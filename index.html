@@ -1,9 +1,21 @@
 <!DOCTYPE html>
+<!--
+  ────────────────────────────────────────────────────────────
+  hi, you're reading the source. good instinct.
+  this is one hand-written .html file. no framework, no build
+  step, no node_modules. just html, css, and ~120 lines of js.
+  the waveform in the hero is ~40 lines of <canvas> and it's
+  listening to your cursor. the IPA is transcribed by ear —
+  linguist's honor. say something: aryanna.mong@gmail.com
+  ps. press ? on the keyboard once the page loads.
+  ────────────────────────────────────────────────────────────
+-->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aryanna Mong — Software Engineer</title>
+<title>Aryanna Mong — /ɛɹiˈænə mɔŋ/</title>
+<meta name="description" content="Aryanna Mong — CS + Linguistics @ UIUC. I build pipelines that turn noisy human signals (speech, EEG, language) into something useful.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -43,25 +55,50 @@
   a{color:inherit;text-decoration:none}
   a:focus-visible,button:focus-visible{outline:2px solid var(--leaf);outline-offset:3px;border-radius:4px}
 
+  /* paper grain — analog texture, sits above everything, ignores clicks */
+  .grain{
+    position:fixed;inset:0;z-index:9999;pointer-events:none;
+    opacity:.055;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  [data-theme="dark"] .grain{opacity:.08;mix-blend-mode:screen}
+
   .mono{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--moss)}
+  .ipa{font-family:'IBM Plex Mono',monospace;color:var(--moss);font-style:normal}
+
+  /* code-comment eyebrow — the "an engineer typed this" tell */
+  .comment{font-family:'IBM Plex Mono',monospace;font-size:.75rem;letter-spacing:.02em;color:var(--moss);text-transform:none}
+  .comment::before{content:'// '}
+
+  /* hand-set annotation, slightly off-kilter on purpose */
+  .note{
+    font-family:'Fraunces',serif;font-style:italic;font-weight:300;
+    font-size:.95rem;color:var(--leaf);display:inline-block;
+    transform:rotate(-1.4deg);
+  }
 
   body,nav,.card,.about{transition:background .35s ease,color .35s ease,border-color .35s ease}
 
-  /* theme toggle */
-  .theme-btn{
-    width:34px;height:34px;border-radius:50%;
+  /* theme + ipa toggles */
+  .icon-btn{
+    height:34px;border-radius:999px;
     border:1px solid var(--line);background:transparent;color:var(--forest);
-    cursor:pointer;display:grid;place-items:center;font-size:.95rem;
-    transition:background .2s,transform .2s;
+    cursor:pointer;display:inline-grid;place-items:center;
+    font-family:'IBM Plex Mono',monospace;font-size:.8rem;
+    transition:background .2s,transform .2s,border-color .2s;
   }
+  .theme-btn{width:34px;font-size:.95rem}
   .theme-btn:hover{background:var(--paper-2);transform:rotate(15deg)}
+  .ipa-btn{padding:0 .7rem;letter-spacing:.02em}
+  .ipa-btn:hover{background:var(--paper-2)}
+  .ipa-btn[aria-pressed="true"]{background:var(--forest);color:var(--paper);border-color:var(--forest)}
 
   /* availability badge */
   .avail{
     display:inline-flex;align-items:center;gap:.55rem;
     padding:.45rem 1rem;border-radius:999px;
     border:1px solid var(--line);background:var(--paper-2);
-    font-size:.8rem;font-weight:500;color:var(--forest);
+    font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--forest);
     margin-bottom:1.6rem;width:fit-content;
   }
   .avail-dot{width:8px;height:8px;border-radius:50%;background:#3E9A5F;animation:pulse 2s infinite}
@@ -126,12 +163,14 @@
     border-bottom:1px solid var(--line);
   }
   [data-theme="dark"] nav{background:rgba(15,30,22,.82)}
-  .nav-name{font-family:'Fraunces',serif;font-weight:500;font-size:1.05rem;color:var(--forest)}
-  .nav-links{display:flex;gap:2rem}
+  .nav-name{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:.9rem;color:var(--forest);letter-spacing:.02em}
+  .nav-name .caret{color:var(--leaf);animation:blink 1.1s step-end infinite}
+  @keyframes blink{50%{opacity:0}}
+  .nav-links{display:flex;gap:2rem;align-items:center}
   .nav-links a{font-size:.85rem;font-weight:500;color:var(--forest);position:relative}
   .nav-links a::after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:1.5px;background:var(--leaf);transition:width .25s ease}
   .nav-links a:hover::after{width:100%}
-  @media(max-width:640px){.nav-links{gap:1.1rem}.nav-links a{font-size:.78rem}}
+  @media(max-width:640px){.nav-links{gap:1.1rem}.nav-links a{font-size:.78rem}.nav-links .hide-sm{display:none}}
 
   /* ---------- HERO ---------- */
   header{
@@ -147,11 +186,19 @@
     line-height:1.02;letter-spacing:-.02em;color:var(--forest);
   }
   h1 em{font-style:italic;font-weight:300;color:var(--leaf)}
-  .hero-sub{
-    max-width:34rem;margin-top:1.8rem;
-    font-size:1.05rem;color:var(--ink);opacity:.85;
+  /* pronunciation line — click to hear yourself say it wrong */
+  .pron{
+    margin-top:1rem;display:inline-flex;align-items:center;gap:.7rem;flex-wrap:wrap;
+    font-family:'IBM Plex Mono',monospace;font-size:1rem;color:var(--moss);cursor:pointer;
+    background:none;border:none;padding:0;
   }
-  .hero-cta{display:flex;gap:1rem;margin-top:2.2rem;flex-wrap:wrap}
+  .pron b{color:var(--leaf);font-weight:500}
+  .pron .say{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
+  .hero-sub{
+    max-width:36rem;margin-top:1.8rem;
+    font-size:1.05rem;color:var(--ink);opacity:.9;
+  }
+  .hero-cta{display:flex;gap:1rem;margin-top:2.2rem;flex-wrap:wrap;align-items:center}
   .btn{
     display:inline-block;padding:.75rem 1.6rem;border-radius:999px;
     font-size:.88rem;font-weight:500;border:1px solid var(--forest);
@@ -170,15 +217,18 @@
     display:flex;align-items:center;gap:.5rem;
   }
   .signal-dot{width:7px;height:7px;border-radius:50%;background:var(--leaf);animation:pulse 2s infinite}
+  .signal-note{position:absolute;top:-1.5rem;left:0}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 
   /* ---------- SECTIONS ---------- */
   section{padding:5.5rem 5vw;max-width:1200px;margin:0 auto}
   .sec-head{
-    display:flex;align-items:baseline;justify-content:space-between;
+    display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
     border-bottom:1px solid var(--line);padding-bottom:1rem;margin-bottom:3rem;
   }
+  .sec-head .h-wrap{display:flex;align-items:baseline;gap:.9rem;flex-wrap:wrap}
   h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(1.9rem,4vw,2.8rem);color:var(--forest);letter-spacing:-.01em}
+  .sec-head .ipa{font-size:.95rem}
 
   /* experience */
   .job{
@@ -191,6 +241,7 @@
   .job ul{list-style:none;max-width:44rem}
   .job li{position:relative;padding-left:1.2rem;margin-bottom:.45rem;font-size:.95rem;opacity:.88}
   .job li::before{content:'';position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--moss)}
+  .footnote{margin-top:.8rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--moss);opacity:.85;max-width:44rem}
   @media(max-width:700px){.job{grid-template-columns:1fr;gap:.4rem}}
 
   /* projects */
@@ -231,8 +282,9 @@
   .about h2{color:var(--paper)}
   .about .mono{color:#A9C4A6}
   .about p{max-width:46rem;margin-top:1.2rem;opacity:.92}
-  .about .lang{margin-top:1.6rem;display:flex;gap:.5rem;flex-wrap:wrap}
+  .about .lang{margin-top:1.6rem;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
   .about .chip{border-color:rgba(243,245,239,.3);color:var(--paper)}
+  .about .lang .mono{margin-right:.3rem}
 
   /* footer */
   footer{padding:5.5rem 5vw 3rem;max-width:1200px;margin:0 auto;text-align:left}
@@ -243,40 +295,76 @@
     word-break:break-all;
   }
   .foot-mail:hover{border-color:var(--leaf)}
+  .colophon{
+    margin-top:2.5rem;max-width:44rem;
+    font-family:'IBM Plex Mono',monospace;font-size:.76rem;line-height:1.9;color:var(--moss);
+  }
+  .colophon b{color:var(--forest);font-weight:500}
   .foot-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--line)}
   .foot-meta a:hover{color:var(--leaf)}
+
+  /* keyboard shortcut overlay */
+  .kbd-overlay{
+    position:fixed;inset:0;z-index:200;display:none;
+    place-items:center;background:rgba(18,41,30,.45);backdrop-filter:blur(4px);
+  }
+  .kbd-overlay.show{display:grid}
+  .kbd-panel{
+    background:var(--paper);border:1px solid var(--line);border-radius:18px;
+    padding:2rem 2.2rem;max-width:24rem;width:calc(100% - 3rem);
+    box-shadow:0 20px 60px rgba(18,41,30,.3);
+  }
+  .kbd-panel h3{font-family:'Fraunces',serif;font-weight:500;color:var(--forest);font-size:1.3rem;margin-bottom:1.2rem}
+  .kbd-row{display:flex;justify-content:space-between;align-items:center;padding:.35rem 0;font-size:.9rem}
+  .kbd-row span:last-child{color:var(--moss)}
+  kbd{
+    font-family:'IBM Plex Mono',monospace;font-size:.72rem;
+    padding:.15rem .5rem;border:1px solid var(--line);border-bottom-width:2px;
+    border-radius:6px;background:var(--paper-2);color:var(--forest);
+  }
+  .kbd-panel .close{margin-top:1.3rem;font-size:.75rem;color:var(--moss);font-family:'IBM Plex Mono',monospace}
 
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
   .reveal.in{opacity:1;transform:none}
   @media(prefers-reduced-motion:reduce){
     .reveal{opacity:1;transform:none;transition:none}
-    .signal-dot{animation:none}
+    .signal-dot,.avail-dot,.nav-name .caret{animation:none}
     html{scroll-behavior:auto}
   }
 </style>
 </head>
 <body>
+<div class="grain" aria-hidden="true"></div>
 
 <nav>
-  <a class="nav-name" href="#top">Aryanna Mong</a>
+  <a class="nav-name" href="#top">aryanna@mong:~<span class="caret">▊</span></a>
   <div class="nav-links">
-    <a href="#experience">Experience</a>
-    <a href="#projects">Projects</a>
-    <a href="#now">Now</a>
-    <a href="#skills">Skills</a>
+    <a class="hide-sm" href="#experience">Experience</a>
+    <a class="hide-sm" href="#projects">Projects</a>
+    <a class="hide-sm" href="#skills">Skills</a>
     <a href="#contact">Contact</a>
-    <button class="theme-btn" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">◐</button>
+    <button class="icon-btn ipa-btn" id="ipa-toggle" aria-pressed="false" title="Transcribe the page into IPA (press i)">/ipa/</button>
+    <button class="icon-btn theme-btn" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode (press t)">◐</button>
   </div>
 </nav>
 
 <header id="top">
-  <p class="mono hero-eyebrow">Software Engineer · CS + Linguistics @ UIUC</p>
-  <h1>Building software<br>that <em>listens.</em></h1>
-  <p class="hero-sub">I'm Aryanna — a computer science and linguistics student working across middleware engineering, speech processing, and VR neurofeedback. I like systems that turn messy human signals into something useful.</p>
+  <p class="comment hero-eyebrow">cs + linguistics @ uiuc </p>
+  <h1 data-ipa="/ɛɹiˈænə mɔŋ/">Aryanna Mong</h1>
+
+  <button class="pron" id="pron" title="that's roughly how you say it">
+    <span id="pron-ipa"><b>/ɛɹiˈænə mɔŋ/</b></span>
+    <span class="say">← say it right</span>
+  </button>
+
+  <p class="hero-sub">I build things that turn <em>noisy human signals</em> — speech, EEG, language — into something a computer can actually use. Currently a middleware intern at Synchrony, lead dev on an EEG-driven VR project, and a CS + linguistics student who genuinely thinks minimal pairs are fun.</p>
+
   <div class="hero-cta">
     <a class="btn solid" href="#experience">See my work</a>
     <a class="btn ghost" href="https://linkedin.com/in/aryannamong" target="_blank" rel="noopener">LinkedIn</a>
+    <span class="mono" style="text-transform:none;letter-spacing:.02em">or press <kbd>?</kbd> for shortcuts</span>
   </div>
+
   <div class="signal-wrap">
     <div class="signal-label"><span class="signal-dot"></span><span class="mono" id="signal-text">signal: idle — move your cursor</span></div>
     <canvas id="signal" aria-hidden="true"></canvas>
@@ -284,7 +372,9 @@
 </header>
 
 <section id="experience">
-  <div class="sec-head reveal"><h2>Experience</h2><span class="mono">2024 — present</span></div>
+  <div class="sec-head reveal">
+    <div class="h-wrap"><h2 data-ipa="/ɪkˈspɪɹiəns/">Experience</h2></div>
+  </div>
 
   <div class="job reveal">
     <div><p class="mono">May 2026 — Present</p></div>
@@ -295,7 +385,7 @@
         <li>Developed a decoupled Spring Boot microservice in an Agile environment to optimize asynchronous REST API routes</li>
         <li>Validated API performance and endpoint security using Postman for integration testing across middleware boundaries</li>
         <li>Architected data pipelines monitored via Splunk, leveraging automated exception handling to ensure data integrity</li>
-        <li>Created Vulnerability Filtering GitHub Copilot agent for Hunters team</li>
+        <li>Built a vulnerability-filtering GitHub Copilot agent for the Hunters security team</li>
       </ul>
     </div>
   </div>
@@ -306,7 +396,7 @@
       <h3>NeuroTech @ UIUC</h3>
       <p class="role">Lead Developer · VR NeuroFeedback Project</p>
       <ul>
-        <li>Designing Bluetooth Low Energy sensors for low-latency communication between embedded sensors and game</li>
+        <li>Designing Bluetooth Low Energy sensors for low-latency communication between embedded sensors and the game</li>
         <li>Building VR and Windows games in Unity that adapt dynamically to user responses using EEG data streams</li>
         <li>Implementing WebSocket-based scripts to integrate real-time VR neurofeedback therapy into interactive games</li>
       </ul>
@@ -320,7 +410,7 @@
       <p class="role">Research Intern</p>
       <ul>
         <li>Engineered an automated pipeline using HuggingFace models to extract and structure data from 2,500+ unformatted text feeds</li>
-        <li>Researched methods to analyze the economic impact of advertising "USA made" products under Prof. Takeda & Feng</li>
+        <li>Researched methods to analyze the economic impact of advertising "USA made" products under Prof. Takeda &amp; Feng</li>
       </ul>
     </div>
   </div>
@@ -352,28 +442,32 @@
 </section>
 
 <section id="projects">
-  <div class="sec-head reveal"><h2>Projects</h2><span class="mono">selected work</span></div>
+  <div class="sec-head reveal">
+    <div class="h-wrap"><h2 data-ipa="/ˈpɹɑdʒɛkts/">Projects</h2></div>
+  </div>
   <div class="proj-grid">
     <div class="card reveal">
       <h3>AxB Speech Perception Interface</h3>
-      <p>Python-based experimental interface with randomized stimulus presentation, deployed in a Phase 1 trial serving 200+ students and enabling large-scale speech perception research.</p>
+      <p>A Python experimental interface with randomized stimulus presentation, deployed in a Phase 1 trial serving 200+ students and enabling large-scale speech perception research. </p>
       <div class="chips"><span class="chip">Python</span><span class="chip">PsychoPy</span><span class="chip">Pavlovia</span><span class="chip">GitLab</span></div>
     </div>
     <div class="card reveal">
       <h3>Business Operations Monitor</h3>
-      <p>Analyzed 5,000+ news articles to classify company stances on Russia post-2022. DistilBERT semantic analysis improved precision from 65% to 92%.</p>
+      <p>Classified company stances on Russia post-2022 across 5,000+ news articles. Swapping brittle regex for DistilBERT semantic analysis pushed precision from 65% → 92%.</p>
       <div class="chips"><span class="chip">HuggingFace</span><span class="chip">PyTorch</span><span class="chip">Pandas</span><span class="chip">Regex</span></div>
     </div>
     <div class="card reveal">
       <h3>FindMyIllini</h3>
-      <p>Interactive navigation tool built with React.js that helps UIUC students locate resources inside Grainger Library.</p>
+      <p>A React navigation tool that helps UIUC students find resources and rooms inside Grainger Library — dynamic map, interactive buttons, and the specific relief of never getting lost on the 3rd floor again.</p>
       <div class="chips"><span class="chip">React.js</span><span class="chip">JavaScript</span><span class="chip">Figma</span><span class="chip">CSS</span></div>
     </div>
   </div>
 </section>
 
 <section id="skills">
-  <div class="sec-head reveal"><h2>Skills</h2><span class="mono">toolbox</span></div>
+  <div class="sec-head reveal">
+    <div class="h-wrap"><h2 data-ipa="/skɪlz/">Skills</h2></div>
+  </div>
   <div class="skill-row reveal">
     <p class="mono">Languages</p>
     <div class="chips"><span class="chip">Java</span><span class="chip">Python</span><span class="chip">C++</span><span class="chip">C#</span><span class="chip">C</span><span class="chip">JavaScript</span><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">Verilog</span></div>
@@ -383,11 +477,11 @@
     <div class="chips"><span class="chip">React.js</span><span class="chip">Next.js</span><span class="chip">Unity</span><span class="chip">Android Studio</span></div>
   </div>
   <div class="skill-row reveal">
-    <p class="mono">AI / ML & Data</p>
+    <p class="mono">AI / ML &amp; Data</p>
     <div class="chips"><span class="chip">OpenAI</span><span class="chip">HuggingFace</span><span class="chip">NLTK</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">PyTorch</span><span class="chip">TensorFlow</span></div>
   </div>
   <div class="skill-row reveal">
-    <p class="mono">Infra & DevOps</p>
+    <p class="mono">Infra &amp; DevOps</p>
     <div class="chips"><span class="chip">MongoDB</span><span class="chip">Docker</span><span class="chip">Git</span><span class="chip">CI/CD</span><span class="chip">Postman</span><span class="chip">Maven</span><span class="chip">Spring Tool Suite</span></div>
   </div>
 </section>
@@ -395,8 +489,8 @@
 <section>
   <div class="about reveal">
     <p class="mono">about</p>
-    <h2>CS × Linguistics</h2>
-    <p>I study computer science and linguistics at the University of Illinois Urbana-Champaign. The overlap is the interesting part: speech perception, EEG signals, and language data are all noisy human signals, and I like building the pipelines and interfaces that make sense of them. US citizen, eligible for security clearance.</p>
+    <h2 data-ipa="CS × /lɪŋˈɡwɪstɪks/">CS × Linguistics</h2>
+    <p>I study computer science and linguistics at the University of Illinois Urbana-Champaign, and honestly the overlap is the whole point. Speech perception, EEG signals, and language data are all the same thing wearing different coats: noisy human signal. I like building the pipelines and interfaces that make sense of them. US citizen, eligible for security clearance.</p>
     <div class="lang">
       <span class="chip">English</span><span class="chip">Vietnamese</span><span class="chip">Spanish</span><span class="chip">Cantonese</span>
     </div>
@@ -404,41 +498,55 @@
 </section>
 
 <footer id="contact">
-  <p class="mono reveal">get in touch</p>
+  <p class="comment reveal">connect with me!</p>
   <a class="foot-mail reveal" href="mailto:aryanna.mong@gmail.com">aryanna.mong@gmail.com</a>
 
-  <!-- TODO: replace YOUR_FORM_ID with your real Formspree form ID (formspree.io) -->
   <form class="contact-form reveal" id="contact-form" action="https://formspree.io/f/mbdnjjpz" method="POST">
     <div class="form-row">
       <input type="text" name="name" placeholder="Your name" required autocomplete="name">
       <input type="email" name="email" placeholder="Your email" required autocomplete="email">
     </div>
     <input type="text" name="subject" placeholder="Subject" required>
-    <textarea name="message" placeholder="Your message" required></textarea>
+    <textarea name="message" placeholder="Say something. Bonus points if it involves phonetics." required></textarea>
     <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
     <button class="btn solid" type="submit">Send message</button>
   </form>
 
   <div class="foot-meta">
-    <span class="mono">Designed &amp; built by Aryanna Mong · © 2026</span>
+    <span class="mono">built by aryanna mong · © 2026</span>
     <a class="mono" href="https://linkedin.com/in/aryannamong" target="_blank" rel="noopener">LinkedIn ↗</a>
   </div>
 </footer>
 
 <button class="to-top" id="to-top" aria-label="Back to top" title="Back to top">↑</button>
 
+<!-- keyboard shortcuts, because keyboards are good -->
+<div class="kbd-overlay" id="kbd-overlay" role="dialog" aria-modal="true" aria-label="Keyboard shortcuts">
+  <div class="kbd-panel">
+    <h3>keyboard shortcuts</h3>
+    <div class="kbd-row"><span>Jump to section</span><span><kbd>1</kbd>–<kbd>5</kbd></span></div>
+    <div class="kbd-row"><span>Toggle IPA mode</span><span><kbd>i</kbd></span></div>
+    <div class="kbd-row"><span>Toggle dark mode</span><span><kbd>t</kbd></span></div>
+    <div class="kbd-row"><span>Back to top</span><span><kbd>g</kbd> <kbd>g</kbd></span></div>
+    <div class="kbd-row"><span>This menu</span><span><kbd>?</kbd></span></div>
+    <div class="kbd-row"><span>Close</span><span><kbd>esc</kbd></span></div>
+    <p class="close">psst — there's a Konami code in here somewhere.</p>
+  </div>
+</div>
+
 <script>
 /* ---------- interactive signal (the signature) ----------
    A living waveform: idle it drifts like a calm EEG trace;
    move your cursor across it and the signal "hears" you,
-   amplitude blooming around the pointer. */
+   amplitude blooming around the pointer. Konami code cranks the gain. */
+let boostSignal = () => {};
 (function(){
   const canvas = document.getElementById('signal');
   const label = document.getElementById('signal-text');
   const ctx = canvas.getContext('2d');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let w, h, dpr;
-  let mouseX = -1000, energy = 0, t = 0;
+  let mouseX = -1000, energy = 0, t = 0, gain = 1;
 
   function resize(){
     dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -453,18 +561,20 @@
     const r = canvas.getBoundingClientRect();
     mouseX = x - r.left;
     energy = Math.min(energy + 0.12, 1);
-    label.textContent = 'signal: listening';
+    label.textContent = gain > 1 ? 'signal: MAX GAIN 🔊' : 'signal: listening';
   }
   window.addEventListener('mousemove', e => track(e.clientX));
   window.addEventListener('touchmove', e => track(e.touches[0].clientX), {passive:true});
 
+  boostSignal = () => { gain = 2.4; energy = 1; label.textContent = 'signal: MAX GAIN 🔊'; };
+
   function wave(x, time, boost){
     const base =
-      Math.sin(x * 0.012 + time) * 8 +
-      Math.sin(x * 0.03  + time * 1.7) * 4 +
-      Math.sin(x * 0.005 - time * 0.6) * 10;
+      (Math.sin(x * 0.012 + time) * 8 +
+       Math.sin(x * 0.03  + time * 1.7) * 4 +
+       Math.sin(x * 0.005 - time * 0.6) * 10) * gain;
     const d = Math.abs(x - mouseX);
-    const bloom = Math.exp(-(d * d) / 14000) * 42 * boost;
+    const bloom = Math.exp(-(d * d) / 14000) * 42 * boost * gain;
     const spike = Math.sin(x * 0.09 + time * 6) * bloom;
     return base + spike;
   }
@@ -491,7 +601,8 @@
       ctx.strokeStyle = L.c; ctx.lineWidth = L.lw; ctx.stroke();
     }
     energy *= 0.985;
-    if(energy < 0.02 && label.textContent !== 'signal: idle — move your cursor'){
+    gain += (1 - gain) * 0.01; // ease gain back to normal
+    if(energy < 0.02 && gain < 1.05 && label.textContent !== 'signal: idle — move your cursor'){
       label.textContent = 'signal: idle — move your cursor';
     }
     t += 0.016;
@@ -515,12 +626,37 @@
 })();
 
 /* theme toggle */
-(function(){
-  const btn = document.getElementById('theme-toggle');
+function toggleTheme(){
   const root = document.documentElement;
-  btn.addEventListener('click', () => {
-    root.dataset.theme = root.dataset.theme === 'dark' ? '' : 'dark';
-    if(window.redrawSignal) window.redrawSignal();
+  root.dataset.theme = root.dataset.theme === 'dark' ? '' : 'dark';
+  if(window.redrawSignal) window.redrawSignal();
+}
+document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+
+/* ---------- IPA mode ----------
+   Flip the whole page between English and how it actually sounds.
+   Transcriptions are hand-written; this is a linguistics site, after all. */
+const ipaNodes = [...document.querySelectorAll('[data-ipa]')];
+ipaNodes.forEach(n => n.dataset.en = n.textContent);
+let ipaOn = false;
+function toggleIPA(){
+  ipaOn = !ipaOn;
+  ipaNodes.forEach(n => { n.textContent = ipaOn ? n.dataset.ipa : n.dataset.en; });
+  const btn = document.getElementById('ipa-toggle');
+  btn.setAttribute('aria-pressed', String(ipaOn));
+}
+document.getElementById('ipa-toggle').addEventListener('click', toggleIPA);
+
+/* hero pronunciation toggle: spelling <-> IPA */
+(function(){
+  const pron = document.getElementById('pron');
+  const span = document.getElementById('pron-ipa');
+  let showing = 'ipa';
+  pron.addEventListener('click', () => {
+    showing = showing === 'ipa' ? 'eng' : 'ipa';
+    span.innerHTML = showing === 'ipa'
+      ? '<b>/ɛɹiˈænə mɔŋ/</b>'
+      : '<b>uh-ree-AH-nuh mong</b>';
   });
 })();
 
@@ -566,6 +702,50 @@ const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
 }, {threshold: 0.12});
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ---------- keyboard shortcuts + easter eggs ---------- */
+(function(){
+  const overlay = document.getElementById('kbd-overlay');
+  const sections = ['experience','projects','now','skills','contact'];
+  const toggleHelp = (show) => overlay.classList.toggle('show', show);
+  overlay.addEventListener('click', e => { if(e.target === overlay) toggleHelp(false); });
+
+  let lastG = 0;
+  const konami = [38,38,40,40,37,39,37,39,66,65];
+  let kIdx = 0;
+
+  document.addEventListener('keydown', e => {
+    // don't hijack typing in the contact form
+    const typing = /^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName);
+
+    // Konami code — works even while not typing
+    if(!typing){
+      if(e.keyCode === konami[kIdx]){
+        kIdx++;
+        if(kIdx === konami.length){ boostSignal(); kIdx = 0; }
+      } else {
+        kIdx = (e.keyCode === konami[0]) ? 1 : 0;
+      }
+    }
+
+    if(typing) return;
+
+    if(e.key === '?'){ toggleHelp(!overlay.classList.contains('show')); return; }
+    if(e.key === 'Escape'){ toggleHelp(false); return; }
+    if(e.key === 't'){ toggleTheme(); return; }
+    if(e.key === 'i'){ toggleIPA(); return; }
+    if(e.key === 'g'){
+      const now = Date.now();
+      if(now - lastG < 450){ window.scrollTo({top:0, behavior:'smooth'}); lastG = 0; }
+      else lastG = now;
+      return;
+    }
+    if(e.key >= '1' && e.key <= '5'){
+      const el = document.getElementById(sections[+e.key - 1]);
+      if(el) el.scrollIntoView({behavior:'smooth'});
+    }
+  });
+})();
 </script>
 </body>
 </html>
