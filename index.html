@@ -14,7 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aryanna Mong — /ˈɑː.riˈɒnə mɑːŋ/</title>
+<title>Aryanna Mong — /ɑː.riˈɒnə mɑːŋ/</title>
 <meta name="description" content="Aryanna Mong — CS + Linguistics @ UIUC. I build pipelines that turn noisy human signals (speech, EEG, language) into something useful.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -215,7 +215,7 @@
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 
   /* ---------- SECTIONS ---------- */
-  section{padding:5.5rem 5vw;max-width:1200px;margin:0 auto}
+  section{padding:5.5rem 5vw;max-width:1300px;margin:0 auto}
   .sec-head{
     display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
     border-bottom:1px solid var(--line);padding-bottom:1rem;margin-bottom:3rem;
@@ -281,7 +281,7 @@
   .about .lang .mono{margin-right:.3rem}
 
   /* footer */
-  footer{padding:5.5rem 5vw 3rem;max-width:1200px;margin:0 auto;text-align:left}
+  footer{padding:5.5rem 5vw 3rem;max-width:1300px;margin:0 auto;text-align:left}
   .foot-mail{
     font-family:'Fraunces',serif;font-weight:400;
     font-size:clamp(1.6rem,5vw,3.4rem);color:var(--forest);
@@ -347,11 +347,10 @@
   <h1 data-ipa="/ɛɹiˈænə mɔŋ/">Aryanna Mong</h1>
 
   <button class="pron" id="pron" title="that's roughly how you say it">
-    <span id="pron-ipa"><b>/ɛɹiˈænə mɔŋ/</b></span>
-    <span class="say">← say it right</span>
+    <span id="pron-ipa"><b>/ɑː.riˈɒnə mɑːŋ/</b></span>
   </button>
 
-  <p class="hero-sub">I build things that turn <em>noisy human signals</em> — speech, EEG, language — into something a computer can actually use. Currently a middleware intern at Synchrony, lead dev on an EEG-driven VR project, and a CS + linguistics student who genuinely thinks minimal pairs are fun.</p>
+  <p class="hero-sub">I build things that turn <em>noisy human signals</em> — speech, EEG, language — into something a computer can actually use. Currently a middleware intern at Synchrony, lead dev on an EEG-driven VR project, and a CS + linguistics student.</p>
 
   <div class="hero-cta">
     <a class="btn solid" href="#experience">See my work</a>
@@ -448,7 +447,7 @@
     <div class="card reveal">
       <h3>Business Operations Monitor</h3>
       <p>Classified company stances on Russia post-2022 across 5,000+ news articles. Swapping brittle regex for DistilBERT semantic analysis pushed precision from 65% → 92%.</p>
-      <div class="chips"><span class="chip">HuggingFace</span><span class="chip">PyTorch</span><span class="chip">Pandas</span><span class="chip">Regex</span></div>
+      <div class="chips"><span class="chip">Python</span><span class="chip">PyTorch</span><span class="chip">Pandas</span><span class="chip">Regex</span><span class="chip">NLTK</span><span class="chip">TensorFlow</span></div>
     </div>
     <div class="card reveal">
       <h3>FindMyIllini</h3>
@@ -484,7 +483,7 @@
   <div class="about reveal">
     <p class="mono">about</p>
     <h2 data-ipa="CS × /lɪŋˈɡwɪstɪks/">CS × Linguistics</h2>
-    <p>I study computer science and linguistics at the University of Illinois Urbana-Champaign, and honestly the overlap is the whole point. Speech perception, EEG signals, and language data are all the same thing wearing different coats: noisy human signal. I like building the pipelines and interfaces that make sense of them. US citizen, eligible for security clearance.</p>
+    <p>I study computer science + linguistics at the University of Illinois Urbana-Champaign. Whether it's speech, EEG signals, or language data, they are all the same just written in different fonts: noisy human signal. My curiosity and passion for this has led me to build pipelines and interfaces to manage it. US citizen, eligible for security clearance.</p>
     <div class="lang">
       <span class="chip">English</span><span class="chip">Vietnamese</span><span class="chip">Spanish</span><span class="chip">Cantonese</span>
     </div>
@@ -524,7 +523,6 @@
     <div class="kbd-row"><span>Back to top</span><span><kbd>g</kbd> <kbd>g</kbd></span></div>
     <div class="kbd-row"><span>This menu</span><span><kbd>?</kbd></span></div>
     <div class="kbd-row"><span>Close</span><span><kbd>esc</kbd></span></div>
-    <p class="close">psst — there's a Konami code in here somewhere.</p>
   </div>
 </div>
 
@@ -649,8 +647,8 @@ document.getElementById('ipa-toggle').addEventListener('click', toggleIPA);
   pron.addEventListener('click', () => {
     showing = showing === 'ipa' ? 'eng' : 'ipa';
     span.innerHTML = showing === 'ipa'
-      ? '<b>/ɛɹiˈænə mɔŋ/</b>'
-      : '<b>uh-ree-AH-nuh mong</b>';
+      ? '<b>/ɑː.riˈɒnə mɑːŋ/</b>'
+      : '<b>ar-ree-AH-nuh mong</b>';
   });
 })();
 
