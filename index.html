@@ -1,21 +1,11 @@
 <!DOCTYPE html>
-<!--
-  ────────────────────────────────────────────────────────────
-  hi, you're reading the source. good instinct.
-  this is one hand-written .html file. no framework, no build
-  step, no node_modules. just html, css, and ~120 lines of js.
-  the waveform in the hero is ~40 lines of <canvas> and it's
-  listening to your cursor. the IPA is transcribed by ear —
-  linguist's honor. say something: aryanna.mong@gmail.com
-  ps. press ? on the keyboard once the page loads.
-  ────────────────────────────────────────────────────────────
--->
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aryanna Mong — /ɑː.riˈɒnə mɑːŋ/</title>
-<meta name="description" content="Aryanna Mong — CS + Linguistics @ UIUC. I build pipelines that turn noisy human signals (speech, EEG, language) into something useful.">
+<meta name="description" content="Aryanna Mong — CS + Linguistics @ UIUC. I build pipelines that turn noisy human signals (speech, EEG, language) into useful applications.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -55,7 +45,6 @@
   a{color:inherit;text-decoration:none}
   a:focus-visible,button:focus-visible{outline:2px solid var(--leaf);outline-offset:3px;border-radius:4px}
 
-  /* paper grain — analog texture, sits above everything, ignores clicks */
   .grain{
     position:fixed;inset:0;z-index:9999;pointer-events:none;
     opacity:.055;mix-blend-mode:overlay;
@@ -66,11 +55,9 @@
   .mono{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--moss)}
   .ipa{font-family:'IBM Plex Mono',monospace;color:var(--moss);font-style:normal}
 
-  /* code-comment eyebrow — the "an engineer typed this" tell */
   .comment{font-family:'IBM Plex Mono',monospace;font-size:.75rem;letter-spacing:.02em;color:var(--moss);text-transform:none}
   .comment::before{content:'// '}
 
-  /* hand-set annotation, slightly off-kilter on purpose */
   .note{
     font-family:'Fraunces',serif;font-style:italic;font-weight:300;
     font-size:.95rem;color:var(--leaf);display:inline-block;
@@ -79,7 +66,6 @@
 
   body,nav,.card,.about{transition:background .35s ease,color .35s ease,border-color .35s ease}
 
-  /* theme + ipa toggles */
   .icon-btn{
     height:34px;border-radius:999px;
     border:1px solid var(--line);background:transparent;color:var(--forest);
@@ -93,7 +79,6 @@
   .ipa-btn:hover{background:var(--paper-2)}
   .ipa-btn[aria-pressed="true"]{background:var(--forest);color:var(--paper);border-color:var(--forest)}
 
-  /* availability badge */
   .avail{
     display:inline-flex;align-items:center;gap:.55rem;
     padding:.45rem 1rem;border-radius:999px;
@@ -103,7 +88,6 @@
   }
   .avail-dot{width:8px;height:8px;border-radius:50%;background:#3E9A5F;animation:pulse 2s infinite}
 
-  /* project card links */
   .card-links{display:flex;gap:1.2rem;padding-top:.4rem;border-top:1px solid var(--line)}
   .card-links a{
     font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;
@@ -111,7 +95,7 @@
   }
   .card-links a:hover{color:var(--leaf)}
 
-  /* contact form */
+  
   .contact-form{
     max-width:34rem;margin-top:2.5rem;
     display:flex;flex-direction:column;gap:1rem;
@@ -134,7 +118,7 @@
   .form-status{font-size:.85rem;color:var(--leaf);min-height:1.2em}
   .contact-form .btn{align-self:flex-start;cursor:pointer;font-family:'Archivo',sans-serif}
 
-  /* back to top */
+  
   .to-top{
     position:fixed;bottom:1.6rem;right:1.6rem;z-index:40;
     width:44px;height:44px;border-radius:50%;
@@ -350,7 +334,7 @@
     <span id="pron-ipa"><b>/ɑː.riˈɒnə mɑːŋ/</b></span>
   </button>
 
-  <p class="hero-sub">I build things that turn <em>noisy human signals</em> — speech, EEG, language — into something a computer can actually use. Currently a middleware intern at Synchrony, lead dev on an EEG-driven VR project, and a CS + linguistics student.</p>
+  <p class="hero-sub">I build things that turn noisy human signals (speech, EEG, language) into something a computer can actually use. Currently a middleware intern at Synchrony, lead dev on an EEG-driven VR project, and a CS + linguistics student.</p>
 
   <div class="hero-cta">
     <a class="btn solid" href="#experience">See my work</a>
@@ -513,11 +497,10 @@
 
 <button class="to-top" id="to-top" aria-label="Back to top" title="Back to top">↑</button>
 
-<!-- keyboard shortcuts, because keyboards are good -->
 <div class="kbd-overlay" id="kbd-overlay" role="dialog" aria-modal="true" aria-label="Keyboard shortcuts">
   <div class="kbd-panel">
     <h3>keyboard shortcuts</h3>
-    <div class="kbd-row"><span>Jump to section</span><span><kbd>1</kbd>–<kbd>5</kbd></span></div>
+    <div class="kbd-row"><span>Jump to section</span><span><kbd>1</kbd>–<kbd>4</kbd></span></div>
     <div class="kbd-row"><span>Toggle IPA mode</span><span><kbd>i</kbd></span></div>
     <div class="kbd-row"><span>Toggle dark mode</span><span><kbd>t</kbd></span></div>
     <div class="kbd-row"><span>Back to top</span><span><kbd>g</kbd> <kbd>g</kbd></span></div>
@@ -527,10 +510,7 @@
 </div>
 
 <script>
-/* ---------- interactive signal (the signature) ----------
-   A living waveform: idle it drifts like a calm EEG trace;
-   move your cursor across it and the signal "hears" you,
-   amplitude blooming around the pointer. Konami code cranks the gain. */
+/*eeg */
 let boostSignal = () => {};
 (function(){
   const canvas = document.getElementById('signal');
@@ -553,12 +533,12 @@ let boostSignal = () => {};
     const r = canvas.getBoundingClientRect();
     mouseX = x - r.left;
     energy = Math.min(energy + 0.12, 1);
-    label.textContent = gain > 1 ? 'signal: MAX GAIN 🔊' : 'signal: listening';
+    label.textContent = gain > 1 ? 'signal: bass boosted' : 'signal: listening';
   }
   window.addEventListener('mousemove', e => track(e.clientX));
   window.addEventListener('touchmove', e => track(e.touches[0].clientX), {passive:true});
 
-  boostSignal = () => { gain = 2.4; energy = 1; label.textContent = 'signal: MAX GAIN 🔊'; };
+  boostSignal = () => { gain = 2.4; energy = 1; label.textContent = 'signal: bass boosted'; };
 
   function wave(x, time, boost){
     const base =
@@ -639,7 +619,6 @@ function toggleIPA(){
 }
 document.getElementById('ipa-toggle').addEventListener('click', toggleIPA);
 
-/* hero pronunciation toggle: spelling <-> IPA */
 (function(){
   const pron = document.getElementById('pron');
   const span = document.getElementById('pron-ipa');
@@ -647,12 +626,12 @@ document.getElementById('ipa-toggle').addEventListener('click', toggleIPA);
   pron.addEventListener('click', () => {
     showing = showing === 'ipa' ? 'eng' : 'ipa';
     span.innerHTML = showing === 'ipa'
-      ? '<b>/ɑː.riˈɒnə mɑːŋ/</b>'
-      : '<b>ar-ree-AH-nuh mong</b>';
+      ? '<b>/ɑː.riˈɒnə mɑːŋ/                   click to get the phonetic spelling!</b>'
+      : '<b>ar-ree-AH-nuh mong                   click to get the ipa spelling!</b>';
   });
 })();
 
-/* contact form (Formspree) */
+/* contact form */
 (function(){
   const form = document.getElementById('contact-form');
   const status = document.getElementById('form-status');
@@ -680,7 +659,6 @@ document.getElementById('ipa-toggle').addEventListener('click', toggleIPA);
   });
 })();
 
-/* back to top */
 (function(){
   const btn = document.getElementById('to-top');
   window.addEventListener('scroll', () => {
@@ -689,36 +667,22 @@ document.getElementById('ipa-toggle').addEventListener('click', toggleIPA);
   btn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 })();
 
-/* scroll reveals */
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
 }, {threshold: 0.12});
 document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-/* ---------- keyboard shortcuts + easter eggs ---------- */
 (function(){
   const overlay = document.getElementById('kbd-overlay');
-  const sections = ['experience','projects','now','skills','contact'];
+  const sections = ['experience','projects','skills','contact'];
   const toggleHelp = (show) => overlay.classList.toggle('show', show);
   overlay.addEventListener('click', e => { if(e.target === overlay) toggleHelp(false); });
 
   let lastG = 0;
-  const konami = [38,38,40,40,37,39,37,39,66,65];
   let kIdx = 0;
 
   document.addEventListener('keydown', e => {
-    // don't hijack typing in the contact form
     const typing = /^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName);
-
-    // Konami code — works even while not typing
-    if(!typing){
-      if(e.keyCode === konami[kIdx]){
-        kIdx++;
-        if(kIdx === konami.length){ boostSignal(); kIdx = 0; }
-      } else {
-        kIdx = (e.keyCode === konami[0]) ? 1 : 0;
-      }
-    }
 
     if(typing) return;
 
@@ -732,7 +696,7 @@ document.querySelectorAll('.reveal').forEach(el => io.observe(el));
       else lastG = now;
       return;
     }
-    if(e.key >= '1' && e.key <= '5'){
+    if(e.key >= '1' && e.key <= '4'){
       const el = document.getElementById(sections[+e.key - 1]);
       if(el) el.scrollIntoView({behavior:'smooth'});
     }
