@@ -84,9 +84,11 @@
     padding:.75rem 5vw;
     background:var(--forest);color:var(--paper);
     font-family:'IBM Plex Mono',monospace;font-size:.72rem;line-height:1.8;
-    transform:translateY(-130%);transition:transform .35s ease;
+    transform:translateY(calc(-100% - var(--nav-h, 3.5rem)));
+    transition:transform .35s ease, visibility .35s;
+    visibility:hidden;
   }
-  .ipa-explainer.show{transform:translateY(0)}
+  .ipa-explainer.show{transform:translateY(0);visibility:visible}
   .ipa-explainer b{color:#A9C4A6;font-weight:500}
   .ipa-explainer a{border-bottom:1px solid rgba(243,245,239,.35)}
   .ipa-explainer a:hover{border-color:var(--paper)}
