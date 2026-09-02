@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -10,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  /* ---------- TOKENS ---------- */
   :root{
     --forest:#1E4230;
     --forest-deep:#12291E;
@@ -31,6 +31,8 @@
     --ink:#DCE8DE;
     --line:rgba(207,227,211,.18);
   }
+
+  /* ---------- BASE ---------- */
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
   body{
@@ -44,6 +46,7 @@
   ::selection{background:var(--forest);color:var(--paper)}
   a{color:inherit;text-decoration:none}
   a:focus-visible,button:focus-visible{outline:2px solid var(--leaf);outline-offset:3px;border-radius:4px}
+  body,nav,.card,.about{transition:background .35s ease,color .35s ease,border-color .35s ease}
 
   .grain{
     position:fixed;inset:0;z-index:9999;pointer-events:none;
@@ -52,19 +55,22 @@
   }
   [data-theme="dark"] .grain{opacity:.08;mix-blend-mode:screen}
 
+  /* ---------- TYPE HELPERS ---------- */
   .mono{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--moss)}
-  .ipa{font-family:'IBM Plex Mono',monospace;color:var(--moss);font-style:normal}
-
   .comment{font-family:'IBM Plex Mono',monospace;font-size:.75rem;letter-spacing:.02em;color:var(--moss);text-transform:none}
   .comment::before{content:'// '}
+  .kbd-hint{text-transform:none;letter-spacing:.02em}
 
-  .note{
-    font-family:'Fraunces',serif;font-style:italic;font-weight:300;
-    font-size:.95rem;color:var(--leaf);display:inline-block;
-    transform:rotate(-1.4deg);
+  /* ---------- BUTTONS ---------- */
+  .btn{
+    display:inline-block;padding:.75rem 1.6rem;border-radius:999px;
+    font-size:.88rem;font-weight:500;border:1px solid var(--forest);
+    transition:background .2s,color .2s,transform .2s;
   }
-
-  body,nav,.card,.about{transition:background .35s ease,color .35s ease,border-color .35s ease}
+  .btn.solid{background:var(--forest);color:var(--paper)}
+  .btn.solid:hover{background:var(--forest-deep);transform:translateY(-2px)}
+  .btn.ghost{color:var(--forest)}
+  .btn.ghost:hover{background:var(--forest);color:var(--paper);transform:translateY(-2px)}
 
   .icon-btn{
     height:34px;border-radius:999px;
@@ -78,7 +84,8 @@
   .ipa-btn{padding:0 .7rem;letter-spacing:.02em}
   .ipa-btn:hover{background:var(--paper-2)}
   .ipa-btn[aria-pressed="true"]{background:var(--forest);color:var(--paper);border-color:var(--forest)}
- 
+
+  /* ---------- IPA EXPLAINER BANNER ---------- */
   .ipa-explainer{
     position:fixed;top:var(--nav-h,3.5rem);left:0;right:0;z-index:45;
     padding:.75rem 5vw;
@@ -90,62 +97,8 @@
   }
   .ipa-explainer.show{transform:translateY(0);visibility:visible}
   .ipa-explainer b{color:#A9C4A6;font-weight:500}
-  .ipa-explainer a{border-bottom:1px solid rgba(243,245,239,.35)}
-  .ipa-explainer a:hover{border-color:var(--paper)}
   [data-theme="dark"] .ipa-explainer{background:var(--paper-2);color:var(--ink)}
   [data-theme="dark"] .ipa-explainer b{color:var(--leaf)}
-
-  .avail{
-    display:inline-flex;align-items:center;gap:.55rem;
-    padding:.45rem 1rem;border-radius:999px;
-    border:1px solid var(--line);background:var(--paper-2);
-    font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--forest);
-    margin-bottom:1.6rem;width:fit-content;
-  }
-  .avail-dot{width:8px;height:8px;border-radius:50%;background:#3E9A5F;animation:pulse 2s infinite}
-
-  .card-links{display:flex;gap:1.2rem;padding-top:.4rem;border-top:1px solid var(--line)}
-  .card-links a{
-    font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;
-    color:var(--forest);font-weight:500;
-  }
-  .card-links a:hover{color:var(--leaf)}
-
-  
-  .contact-form{
-    max-width:34rem;margin-top:2.5rem;
-    display:flex;flex-direction:column;gap:1rem;
-  }
-  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-  @media(max-width:560px){.form-row{grid-template-columns:1fr}}
-  .contact-form input,
-  .contact-form textarea{
-    width:100%;padding:.85rem 1.1rem;
-    font-family:'Archivo',sans-serif;font-size:.95rem;
-    color:var(--ink);background:var(--paper-2);
-    border:1px solid var(--line);border-radius:14px;
-    transition:border-color .2s,background .2s;
-  }
-  .contact-form textarea{min-height:140px;resize:vertical}
-  .contact-form input::placeholder,
-  .contact-form textarea::placeholder{color:var(--moss);opacity:.8}
-  .contact-form input:focus,
-  .contact-form textarea:focus{outline:none;border-color:var(--leaf)}
-  .form-status{font-size:.85rem;color:var(--leaf);min-height:1.2em}
-  .contact-form .btn{align-self:flex-start;cursor:pointer;font-family:'Archivo',sans-serif}
-
-  
-  .to-top{
-    position:fixed;bottom:1.6rem;right:1.6rem;z-index:40;
-    width:44px;height:44px;border-radius:50%;
-    border:1px solid var(--line);background:var(--paper);color:var(--forest);
-    cursor:pointer;font-size:1.1rem;
-    opacity:0;pointer-events:none;transform:translateY(8px);
-    transition:opacity .3s,transform .3s,background .2s;
-    box-shadow:0 6px 18px rgba(18,41,30,.15);
-  }
-  .to-top.show{opacity:1;pointer-events:auto;transform:none}
-  .to-top:hover{background:var(--paper-2)}
 
   /* ---------- NAV ---------- */
   nav{
@@ -180,28 +133,31 @@
     line-height:1.02;letter-spacing:-.02em;color:var(--forest);
   }
   h1 em{font-style:italic;font-weight:300;color:var(--leaf)}
-  /* pronunciation line — click to hear yourself say it wrong */
+
+  /* pronunciation: plain spelling first, IPA one click away */
   .pron{
-    margin-top:1rem;display:inline-flex;align-items:center;gap:.7rem;flex-wrap:wrap;
-    font-family:'IBM Plex Mono',monospace;font-size:1rem;color:var(--moss);cursor:pointer;
-    background:none;border:none;padding:0;
+    margin-top:1.1rem;display:inline-flex;align-items:center;gap:.7rem;flex-wrap:wrap;
+    font-family:'IBM Plex Mono',monospace;font-size:1.05rem;color:var(--moss);
+    background:none;border:none;padding:0;cursor:pointer;text-align:left;
   }
-  .pron b{color:var(--leaf);font-weight:500}
-  .pron .say{font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;opacity:.7}
+  .pron b{
+    color:var(--leaf);font-weight:500;
+    text-decoration:underline dotted;text-decoration-color:var(--line);text-underline-offset:6px;
+  }
+  .pron .say{
+    font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--forest);background:var(--paper-2);
+    border:1px solid var(--line);border-radius:999px;padding:.28rem .65rem;
+    transition:background .2s,color .2s,border-color .2s;
+  }
+  .pron:hover .say{background:var(--forest);color:var(--paper);border-color:var(--forest)}
+  .pron:hover b{text-decoration-color:var(--leaf)}
+
   .hero-sub{
     max-width:36rem;margin-top:1.8rem;
     font-size:1.05rem;color:var(--ink);opacity:.9;
   }
   .hero-cta{display:flex;gap:1rem;margin-top:2.2rem;flex-wrap:wrap;align-items:center}
-  .btn{
-    display:inline-block;padding:.75rem 1.6rem;border-radius:999px;
-    font-size:.88rem;font-weight:500;border:1px solid var(--forest);
-    transition:background .2s,color .2s,transform .2s;
-  }
-  .btn.solid{background:var(--forest);color:var(--paper)}
-  .btn.solid:hover{background:var(--forest-deep);transform:translateY(-2px)}
-  .btn.ghost{color:var(--forest)}
-  .btn.ghost:hover{background:var(--forest);color:var(--paper);transform:translateY(-2px)}
 
   /* signature: the signal */
   .signal-wrap{position:relative;margin-top:3.5rem}
@@ -211,7 +167,6 @@
     display:flex;align-items:center;gap:.5rem;
   }
   .signal-dot{width:7px;height:7px;border-radius:50%;background:var(--leaf);animation:pulse 2s infinite}
-  .signal-note{position:absolute;top:-1.5rem;left:0}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
 
   /* ---------- SECTIONS ---------- */
@@ -222,7 +177,6 @@
   }
   .sec-head .h-wrap{display:flex;align-items:baseline;gap:.9rem;flex-wrap:wrap}
   h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(1.9rem,4vw,2.8rem);color:var(--forest);letter-spacing:-.01em}
-  .sec-head .ipa{font-size:.95rem}
 
   /* experience */
   .job{
@@ -235,7 +189,6 @@
   .job ul{list-style:none;max-width:44rem}
   .job li{position:relative;padding-left:1.2rem;margin-bottom:.45rem;font-size:.95rem;opacity:.88}
   .job li::before{content:'';position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--moss)}
-  .footnote{margin-top:.8rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--moss);opacity:.85;max-width:44rem}
   @media(max-width:700px){.job{grid-template-columns:1fr;gap:.4rem}}
 
   /* projects */
@@ -256,31 +209,84 @@
     font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.05em;
     padding:.28rem .65rem;border-radius:999px;
     border:1px solid var(--line);color:var(--forest);
+    background:transparent;
   }
+  /* skill chips are real buttons: click one and it says where it was used */
+  button.chip{
+    background:var(--paper-2);cursor:pointer;line-height:inherit;
+    transition:background .2s,color .2s,border-color .2s,transform .2s;
+  }
+  button.chip:hover{border-color:var(--leaf);transform:translateY(-2px)}
+  button.chip.is-active{background:var(--forest);color:var(--paper);border-color:var(--forest)}
+  .chip.is-hidden{display:none}
 
   /* skills */
+  .skill-filter{
+    font-family:'IBM Plex Mono',monospace;font-size:.75rem;
+    color:var(--ink);background:var(--paper-2);
+    border:1px solid var(--line);border-radius:999px;
+    padding:.4rem .9rem;width:10rem;max-width:42vw;
+    transition:border-color .2s,width .25s ease;
+  }
+  .skill-filter::placeholder{color:var(--moss)}
+  .skill-filter:focus{outline:none;border-color:var(--leaf);width:12.5rem}
+  .skill-readout{margin:-1.9rem 0 2.2rem;min-height:1.7em}
   .skill-row{
     display:grid;grid-template-columns:220px 1fr;gap:1.5rem;
     padding:1.3rem 0;border-bottom:1px solid var(--line);align-items:baseline;
   }
   .skill-row:last-child{border-bottom:none}
-  .skill-row .chips .chip{background:var(--paper-2)}
+  .skill-row.is-empty{display:none}
   @media(max-width:700px){.skill-row{grid-template-columns:1fr;gap:.5rem}}
+  /* chips fade in one after another instead of landing as a block */
+  @media(prefers-reduced-motion:no-preference){
+    .skill-row .chip{opacity:0;transition:opacity .45s ease;transition-delay:var(--d,0s)}
+    .skill-row.in .chip{opacity:1}
+  }
 
-  /* about strip */
+  /* about strip — the panel inverts in dark mode, so its own
+     foreground tokens have to invert with it, not just inherit */
   .about{
+    --about-muted:#A9C4A6;
+    --about-chip-line:rgba(243,245,239,.3);
     background:var(--forest);color:var(--paper);
     border-radius:var(--radius);
     padding:3.5rem clamp(1.5rem,5vw,8rem);
   }
+  [data-theme="dark"] .about{
+    --about-muted:#2F5540;
+    --about-chip-line:rgba(18,41,30,.28);
+  }
   .about h2{color:var(--paper)}
-  .about .mono{color:#A9C4A6}
+  .about .mono{color:var(--about-muted)}
   .about p{max-width:46rem;margin-top:1.2rem;opacity:.92}
   .about .lang{margin-top:1.6rem;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
-  .about .chip{border-color:rgba(243,245,239,.3);color:var(--paper)}
-  .about .lang .mono{margin-right:.3rem}
+  .about .chip{border-color:var(--about-chip-line);color:var(--paper)}
 
-  /* footer */
+  /* ---------- CONTACT ---------- */
+  .contact-form{
+    max-width:34rem;margin-top:2.5rem;
+    display:flex;flex-direction:column;gap:1rem;
+  }
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+  @media(max-width:560px){.form-row{grid-template-columns:1fr}}
+  .contact-form input,
+  .contact-form textarea{
+    width:100%;padding:.85rem 1.1rem;
+    font-family:'Archivo',sans-serif;font-size:.95rem;
+    color:var(--ink);background:var(--paper-2);
+    border:1px solid var(--line);border-radius:14px;
+    transition:border-color .2s,background .2s;
+  }
+  .contact-form textarea{min-height:140px;resize:vertical}
+  .contact-form input::placeholder,
+  .contact-form textarea::placeholder{color:var(--moss);opacity:.8}
+  .contact-form input:focus,
+  .contact-form textarea:focus{outline:none;border-color:var(--leaf)}
+  .form-status{font-size:.85rem;color:var(--leaf);min-height:1.2em}
+  .contact-form .btn{align-self:flex-start;cursor:pointer;font-family:'Archivo',sans-serif}
+
+  /* ---------- FOOTER ---------- */
   footer{padding:5.5rem 5vw 3rem;max-width:1300px;margin:0 auto;text-align:left}
   .foot-mail{
     font-family:'Fraunces',serif;font-weight:400;
@@ -289,15 +295,22 @@
     word-break:break-all;
   }
   .foot-mail:hover{border-color:var(--leaf)}
-  .colophon{
-    margin-top:2.5rem;max-width:44rem;
-    font-family:'IBM Plex Mono',monospace;font-size:.76rem;line-height:1.9;color:var(--moss);
-  }
-  .colophon b{color:var(--forest);font-weight:500}
   .foot-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--line)}
   .foot-meta a:hover{color:var(--leaf)}
 
-  /* keyboard shortcut overlay */
+  /* ---------- UTILITIES ---------- */
+  .to-top{
+    position:fixed;bottom:1.6rem;right:1.6rem;z-index:40;
+    width:44px;height:44px;border-radius:50%;
+    border:1px solid var(--line);background:var(--paper);color:var(--forest);
+    cursor:pointer;font-size:1.1rem;
+    opacity:0;pointer-events:none;transform:translateY(8px);
+    transition:opacity .3s,transform .3s,background .2s;
+    box-shadow:0 6px 18px rgba(18,41,30,.15);
+  }
+  .to-top.show{opacity:1;pointer-events:auto;transform:none}
+  .to-top:hover{background:var(--paper-2)}
+
   .kbd-overlay{
     position:fixed;inset:0;z-index:200;display:none;
     place-items:center;background:rgba(18,41,30,.45);backdrop-filter:blur(4px);
@@ -316,13 +329,12 @@
     padding:.15rem .5rem;border:1px solid var(--line);border-bottom-width:2px;
     border-radius:6px;background:var(--paper-2);color:var(--forest);
   }
-  .kbd-panel .close{margin-top:1.3rem;font-size:.75rem;color:var(--moss);font-family:'IBM Plex Mono',monospace}
 
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
   .reveal.in{opacity:1;transform:none}
   @media(prefers-reduced-motion:reduce){
     .reveal{opacity:1;transform:none;transition:none}
-    .signal-dot,.avail-dot,.nav-name .caret{animation:none}
+    .signal-dot,.nav-name .caret{animation:none}
     html{scroll-behavior:auto}
   }
 </style>
@@ -341,6 +353,7 @@
     <button class="icon-btn theme-btn" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode (press t)">◐</button>
   </div>
 </nav>
+
 <div class="ipa-explainer" id="ipa-explainer" role="status" aria-live="polite">
   <b>ipa</b> = the international phonetic alphabet. one symbol per sound, so any
   language can be written exactly as it's spoken. it's the closest thing speech has
@@ -348,11 +361,17 @@
 </div>
 
 <header id="top">
-  <p class="comment hero-eyebrow">cs + linguistics @ uiuc </p>
+  <p class="comment hero-eyebrow">cs + linguistics @ uiuc</p>
   <h1 data-ipa="/ɑː.riˈɒnə mɑːŋ/">Aryanna Mong</h1>
 
-  <button class="pron" id="pron" title="that's roughly how you say it">
-    <span id="pron-ipa"><b>/ɑː.riˈɒnə mɑːŋ/</b></span>
+  <button class="pron" id="pron"
+          aria-label="Switch pronunciation between plain spelling and IPA"
+          data-plain="ar-ree-AH-nuh mong"
+          data-plain-hint="click for IPA"
+          data-ipa="/ɑː.riˈɒnə mɑːŋ/"
+          data-ipa-hint="click for plain spelling">
+    <b id="pron-text">ar-ree-AH-nuh mong</b>
+    <span class="say" id="pron-hint">click for IPA</span>
   </button>
 
   <p class="hero-sub">I build things that turn noisy human signals (speech, EEG, language) into something a computer can actually use. Currently a middleware intern at Synchrony, lead dev on an EEG-driven VR project, and a CS + linguistics student.</p>
@@ -360,7 +379,7 @@
   <div class="hero-cta">
     <a class="btn solid" href="#experience">See my work</a>
     <a class="btn ghost" href="https://linkedin.com/in/aryannamong" target="_blank" rel="noopener">LinkedIn</a>
-    <span class="mono" style="text-transform:none;letter-spacing:.02em">or press <kbd>?</kbd> for shortcuts</span>
+    <span class="mono kbd-hint">or press <kbd>?</kbd> for shortcuts</span>
   </div>
 
   <div class="signal-wrap">
@@ -446,7 +465,7 @@
   <div class="proj-grid">
     <div class="card reveal">
       <h3>AxB Speech Perception Interface</h3>
-      <p>A Python experimental interface with randomized stimulus presentation, deployed in a Phase 1 trial serving 200+ students and enabling large-scale speech perception research. </p>
+      <p>A Python experimental interface with randomized stimulus presentation, deployed in a Phase 1 trial serving 200+ students and enabling large-scale speech perception research.</p>
       <div class="chips"><span class="chip">Python</span><span class="chip">PsychoPy</span><span class="chip">Pavlovia</span><span class="chip">GitLab</span></div>
     </div>
     <div class="card reveal">
@@ -465,22 +484,56 @@
 <section id="skills">
   <div class="sec-head reveal">
     <div class="h-wrap"><h2 data-ipa="/skɪlz/">Skills</h2></div>
+    <input class="skill-filter" id="skill-filter" type="search" placeholder="filter…"
+           aria-label="Filter skills" autocomplete="off" spellcheck="false">
   </div>
+  <p class="comment skill-readout" id="skill-readout" role="status" aria-live="polite">tap a tool to see where I actually used it</p>
   <div class="skill-row reveal">
     <p class="mono">Languages</p>
-    <div class="chips"><span class="chip">Java</span><span class="chip">Python</span><span class="chip">C++</span><span class="chip">C#</span><span class="chip">C</span><span class="chip">JavaScript</span><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">Verilog</span></div>
+    <div class="chips">
+      <button class="chip" type="button" data-note="spring boot services on synchrony's middleware team">Java</button>
+      <button class="chip" type="button" data-note="the whisper + pyannote speech pipeline, psychopy experiments, the news classifier">Python</button>
+      <button class="chip" type="button" data-note="systems and data structures coursework">C++</button>
+      <button class="chip" type="button" data-note="unity gameplay and eeg integration for the vr neurofeedback project">C#</button>
+      <button class="chip" type="button" data-note="coursework — the closest i get to talking to the metal">C</button>
+      <button class="chip" type="button" data-note="findmyillini's front end, and every interaction on this page">JavaScript</button>
+      <button class="chip" type="button" data-note="hand-written, including the page you're reading">HTML</button>
+      <button class="chip" type="button" data-note="the entire look of this site, no framework">CSS</button>
+      <button class="chip" type="button" data-note="digital logic coursework">Verilog</button>
+    </div>
   </div>
   <div class="skill-row reveal">
     <p class="mono">Frameworks</p>
-    <div class="chips"><span class="chip">React.js</span><span class="chip">Next.js</span><span class="chip">Unity</span><span class="chip">Android Studio</span></div>
+    <div class="chips">
+      <button class="chip" type="button" data-note="findmyillini, the grainger library wayfinder">React.js</button>
+      <button class="chip" type="button" data-note="personal projects">Next.js</button>
+      <button class="chip" type="button" data-note="vr and windows neurofeedback games at neurotech @ uiuc">Unity</button>
+      <button class="chip" type="button" data-note="personal projects">Android Studio</button>
+    </div>
   </div>
   <div class="skill-row reveal">
     <p class="mono">AI / ML &amp; Data</p>
-    <div class="chips"><span class="chip">OpenAI</span><span class="chip">HuggingFace</span><span class="chip">NLTK</span><span class="chip">Pandas</span><span class="chip">NumPy</span><span class="chip">PyTorch</span><span class="chip">TensorFlow</span></div>
+    <div class="chips">
+      <button class="chip" type="button" data-note="whisper, for diarized multi-stream transcription">OpenAI</button>
+      <button class="chip" type="button" data-note="model pipelines over 2,500+ unformatted text feeds at gies">HuggingFace</button>
+      <button class="chip" type="button" data-note="tokenizing and cleaning the news corpus">NLTK</button>
+      <button class="chip" type="button" data-note="turning 5,000+ scraped articles into something queryable">Pandas</button>
+      <button class="chip" type="button" data-note="the array math underneath the speech and eeg pipelines">NumPy</button>
+      <button class="chip" type="button" data-note="distilbert fine-tuning — the jump from 65% to 92% precision">PyTorch</button>
+      <button class="chip" type="button" data-note="model experiments alongside pytorch">TensorFlow</button>
+    </div>
   </div>
   <div class="skill-row reveal">
     <p class="mono">Infra &amp; DevOps</p>
-    <div class="chips"><span class="chip">MongoDB</span><span class="chip">Docker</span><span class="chip">Git</span><span class="chip">CI/CD</span><span class="chip">Postman</span><span class="chip">Maven</span><span class="chip">Spring Tool Suite</span></div>
+    <div class="chips">
+      <button class="chip" type="button" data-note="document storage for side projects">MongoDB</button>
+      <button class="chip" type="button" data-note="containerizing services so they run the same everywhere">Docker</button>
+      <button class="chip" type="button" data-note="all of it, including this page's history">Git</button>
+      <button class="chip" type="button" data-note="automated build and test pipelines at synchrony">CI/CD</button>
+      <button class="chip" type="button" data-note="integration testing api performance and endpoint security">Postman</button>
+      <button class="chip" type="button" data-note="building and dependency-managing the spring services">Maven</button>
+      <button class="chip" type="button" data-note="day-to-day ide on the middleware team">Spring Tool Suite</button>
+    </div>
   </div>
 </section>
 
@@ -523,6 +576,7 @@
     <h3>keyboard shortcuts</h3>
     <div class="kbd-row"><span>Jump to section</span><span><kbd>1</kbd>–<kbd>4</kbd></span></div>
     <div class="kbd-row"><span>Toggle IPA mode</span><span><kbd>i</kbd></span></div>
+    <div class="kbd-row"><span>Filter skills</span><span><kbd>/</kbd></span></div>
     <div class="kbd-row"><span>Toggle dark mode</span><span><kbd>t</kbd></span></div>
     <div class="kbd-row"><span>Back to top</span><span><kbd>g</kbd> <kbd>g</kbd></span></div>
     <div class="kbd-row"><span>This menu</span><span><kbd>?</kbd></span></div>
@@ -531,18 +585,36 @@
 </div>
 
 <script>
-/*eeg */
-let boostSignal = () => {};
+const $ = (id) => document.getElementById(id);
+const isDark = () => document.documentElement.dataset.theme === 'dark';
+
+/* ---------- signal canvas ---------- */
 (function(){
-  const canvas = document.getElementById('signal');
-  const label = document.getElementById('signal-text');
+  const canvas = $('signal');
+  const label = $('signal-text');
   const ctx = canvas.getContext('2d');
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let w, h, dpr;
-  let mouseX = -1000, energy = 0, t = 0, gain = 1;
+  const IDLE = 'signal: idle — move your cursor';
+
+  /* mirrors the CSS tokens; rgba layers can't be read straight off a var */
+  const PALETTE = {
+    light: [
+      {c:'rgba(110,143,115,.35)', lw:1,   off:1.3},
+      {c:'rgba(62,122,84,.55)',   lw:1.2, off:0.7},
+      {c:'#1E4230',               lw:1.8, off:0}
+    ],
+    dark: [
+      {c:'rgba(143,175,148,.35)', lw:1,   off:1.3},
+      {c:'rgba(127,191,147,.55)', lw:1.2, off:0.7},
+      {c:'#CFE3D3',               lw:1.8, off:0}
+    ]
+  };
+
+  let w, h;
+  let mouseX = -1000, energy = 0, t = 0;
 
   function resize(){
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
     w = canvas.offsetWidth; h = canvas.offsetHeight;
     canvas.width = w * dpr; canvas.height = h * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -551,123 +623,113 @@ let boostSignal = () => {};
   window.addEventListener('resize', resize);
 
   function track(x){
-    const r = canvas.getBoundingClientRect();
-    mouseX = x - r.left;
+    mouseX = x - canvas.getBoundingClientRect().left;
     energy = Math.min(energy + 0.12, 1);
-    label.textContent = gain > 1 ? 'signal: bass boosted' : 'signal: listening';
+    label.textContent = 'signal: listening';
   }
   window.addEventListener('mousemove', e => track(e.clientX));
   window.addEventListener('touchmove', e => track(e.touches[0].clientX), {passive:true});
 
-  boostSignal = () => { gain = 2.4; energy = 1; label.textContent = 'signal: bass boosted'; };
-
   function wave(x, time, boost){
     const base =
-      (Math.sin(x * 0.012 + time) * 8 +
-       Math.sin(x * 0.03  + time * 1.7) * 4 +
-       Math.sin(x * 0.005 - time * 0.6) * 10) * gain;
+      Math.sin(x * 0.012 + time) * 8 +
+      Math.sin(x * 0.03  + time * 1.7) * 4 +
+      Math.sin(x * 0.005 - time * 0.6) * 10;
     const d = Math.abs(x - mouseX);
-    const bloom = Math.exp(-(d * d) / 14000) * 42 * boost * gain;
-    const spike = Math.sin(x * 0.09 + time * 6) * bloom;
-    return base + spike;
+    const bloom = Math.exp(-(d * d) / 14000) * 42 * boost;
+    return base + Math.sin(x * 0.09 + time * 6) * bloom;
+  }
+
+  function trace(time, boost, style, lineWidth){
+    ctx.beginPath();
+    for(let x = 0; x <= w; x += 3){
+      const y = h / 2 + wave(x, time, boost);
+      x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    }
+    ctx.strokeStyle = style; ctx.lineWidth = lineWidth; ctx.stroke();
   }
 
   function draw(){
     ctx.clearRect(0, 0, w, h);
-    const mid = h / 2;
-    const dark = document.documentElement.dataset.theme === 'dark';
-    const layers = dark ? [
-      {c:'rgba(143,175,148,.35)', lw:1,   off:1.3},
-      {c:'rgba(127,191,147,.55)', lw:1.2, off:0.7},
-      {c:'#CFE3D3',               lw:1.8, off:0}
-    ] : [
-      {c:'rgba(110,143,115,.35)', lw:1,   off:1.3},
-      {c:'rgba(62,122,84,.55)',   lw:1.2, off:0.7},
-      {c:'#1E4230',               lw:1.8, off:0}
-    ];
-    for(const L of layers){
-      ctx.beginPath();
-      for(let x = 0; x <= w; x += 3){
-        const y = mid + wave(x, t + L.off, energy);
-        x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-      }
-      ctx.strokeStyle = L.c; ctx.lineWidth = L.lw; ctx.stroke();
+    for(const layer of PALETTE[isDark() ? 'dark' : 'light']){
+      trace(t + layer.off, energy, layer.c, layer.lw);
     }
     energy *= 0.985;
-    gain += (1 - gain) * 0.01; // ease gain back to normal
-    if(energy < 0.02 && gain < 1.05 && label.textContent !== 'signal: idle — move your cursor'){
-      label.textContent = 'signal: idle — move your cursor';
-    }
+    if(energy < 0.02 && label.textContent !== IDLE) label.textContent = IDLE;
     t += 0.016;
     requestAnimationFrame(draw);
   }
 
   function staticTrace(){
-    energy = 0; label.textContent = 'signal';
-    ctx.clearRect(0,0,w,h);
-    ctx.beginPath();
-    for(let x = 0; x <= w; x += 3){
-      const y = h/2 + wave(x, 2, 0);
-      x === 0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
-    }
-    const dark = document.documentElement.dataset.theme === 'dark';
-    ctx.strokeStyle = dark ? '#CFE3D3' : '#1E4230';
-    ctx.lineWidth = 1.8; ctx.stroke();
+    energy = 0;
+    label.textContent = 'signal';
+    ctx.clearRect(0, 0, w, h);
+    trace(2, 0, isDark() ? '#CFE3D3' : '#1E4230', 1.8);
   }
-  if(reduced){ staticTrace(); } else { draw(); }
-  window.redrawSignal = () => { if(reduced) staticTrace(); };
+
+  if(reduced){
+    staticTrace();
+    window.redrawSignal = staticTrace;
+  } else {
+    draw();
+    window.redrawSignal = () => {};
+  }
 })();
 
-/* theme toggle */
+/* ---------- theme ---------- */
 function toggleTheme(){
   const root = document.documentElement;
-  root.dataset.theme = root.dataset.theme === 'dark' ? '' : 'dark';
-  if(window.redrawSignal) window.redrawSignal();
+  root.dataset.theme = isDark() ? '' : 'dark';
+  window.redrawSignal();
 }
-document.getElementById('theme-toggle').addEventListener('click', toggleTheme);
+$('theme-toggle').addEventListener('click', toggleTheme);
 
 /* ---------- IPA mode ----------
    Flip the whole page between English and how it actually sounds.
    Transcriptions are hand-written; this is a linguistics site, after all. */
-const ipaNodes = [...document.querySelectorAll('[data-ipa]')];
-ipaNodes.forEach(n => n.dataset.en = n.textContent);
-let ipaOn = false;
-/* keep the banner sitting exactly under the nav */
-(function(){
+const toggleIPA = (function(){
+  const btn = $('ipa-toggle');
+  const explainer = $('ipa-explainer');
+  const nodes = [...document.querySelectorAll('h1[data-ipa], h2[data-ipa]')];
+  nodes.forEach(n => n.dataset.en = n.textContent);
+  let on = false;
+
+  /* keep the banner sitting exactly under the nav */
   const nav = document.querySelector('nav');
-  const setNavH = () => document.documentElement.style
-    .setProperty('--nav-h', nav.offsetHeight + 'px');
+  const setNavH = () =>
+    document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px');
   setNavH();
   window.addEventListener('resize', setNavH);
+
+  return function(){
+    on = !on;
+    nodes.forEach(n => { n.textContent = on ? n.dataset.ipa : n.dataset.en; });
+    btn.setAttribute('aria-pressed', String(on));
+    explainer.classList.toggle('show', on);
+  };
 })();
+$('ipa-toggle').addEventListener('click', toggleIPA);
 
-function toggleIPA(){
-  ipaOn = !ipaOn;
-  ipaNodes.forEach(n => { n.textContent = ipaOn ? n.dataset.ipa : n.dataset.en; });
-  document.getElementById('ipa-toggle').setAttribute('aria-pressed', String(ipaOn));
-  document.getElementById('ipa-explainer').classList.toggle('show', ipaOn);
-}
-document.getElementById('ipa-toggle').addEventListener('click', toggleIPA);
-
+/* ---------- name pronunciation ---------- */
 (function(){
-  const pron = document.getElementById('pron');
-  const span = document.getElementById('pron-ipa');
-  let showing = 'ipa';
-  pron.addEventListener('click', () => {
-    showing = showing === 'ipa' ? 'eng' : 'ipa';
-    span.innerHTML = showing === 'ipa'
-      ? '<b>/ɑː.riˈɒnə mɑːŋ/</b> <span class="say">click for phonetic</span>'
-      : '<b>ar-ree-AH-nuh mong</b> <span class="say">click for ipa</span>';
+  const btn = $('pron');
+  const text = $('pron-text');
+  const hint = $('pron-hint');
+  let showingIPA = false;
+  btn.addEventListener('click', () => {
+    showingIPA = !showingIPA;
+    text.textContent = showingIPA ? btn.dataset.ipa : btn.dataset.plain;
+    hint.textContent = showingIPA ? btn.dataset.ipaHint : btn.dataset.plainHint;
   });
 })();
 
-/* contact form */
+/* ---------- contact form ---------- */
 (function(){
-  const form = document.getElementById('contact-form');
-  const status = document.getElementById('form-status');
+  const form = $('contact-form');
+  const status = $('form-status');
+  const btn = form.querySelector('button[type="submit"]');
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    const btn = form.querySelector('button[type="submit"]');
     btn.disabled = true;
     status.textContent = 'Sending…';
     try{
@@ -689,46 +751,116 @@ document.getElementById('ipa-toggle').addEventListener('click', toggleIPA);
   });
 })();
 
+/* ---------- back to top ---------- */
 (function(){
-  const btn = document.getElementById('to-top');
+  const btn = $('to-top');
   window.addEventListener('scroll', () => {
     btn.classList.toggle('show', window.scrollY > 600);
   }, {passive:true});
   btn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
 })();
 
-const io = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
-}, {threshold: 0.12});
-document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
+/* ---------- scroll reveals ---------- */
 (function(){
-  const overlay = document.getElementById('kbd-overlay');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold: 0.12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+})();
+
+/* ---------- skills: filter + click a tool to see where it was used ---------- */
+(function(){
+  const filter = $('skill-filter');
+  const readout = $('skill-readout');
+  const rows = [...document.querySelectorAll('.skill-row')];
+  const chips = [...document.querySelectorAll('.skill-row .chip')];
+  const PROMPT = 'tap a tool to see where I actually used it';
+  let active = null;
+
+  /* stagger each row's chips so they arrive in sequence, not all at once */
+  rows.forEach(row => [...row.querySelectorAll('.chip')].forEach((chip, i) => {
+    chip.style.setProperty('--d', (i * 0.035).toFixed(3) + 's');
+  }));
+
+  function clearActive(){
+    if(active) active.classList.remove('is-active');
+    active = null;
+  }
+
+  chips.forEach(chip => chip.addEventListener('click', () => {
+    const wasActive = chip === active;
+    clearActive();
+    if(wasActive){ readout.textContent = PROMPT; return; }
+    active = chip;
+    chip.classList.add('is-active');
+    readout.textContent = chip.textContent + ' \u2192 ' + chip.dataset.note;
+  }));
+
+  filter.addEventListener('input', () => {
+    const q = filter.value.trim().toLowerCase();
+    let shown = 0;
+    chips.forEach(chip => {
+      const hit = !q ||
+        chip.textContent.toLowerCase().includes(q) ||
+        chip.dataset.note.toLowerCase().includes(q);
+      chip.classList.toggle('is-hidden', !hit);
+      if(hit) shown++;
+    });
+    rows.forEach(row => row.classList.toggle('is-empty', !row.querySelector('.chip:not(.is-hidden)')));
+    clearActive();
+    readout.textContent = q
+      ? shown + ' of ' + chips.length + ' match \u201c' + q + '\u201d'
+      : PROMPT;
+  });
+
+  filter.addEventListener('keydown', e => {
+    if(e.key === 'Escape'){
+      filter.value = '';
+      filter.dispatchEvent(new Event('input'));
+      filter.blur();
+    }
+  });
+})();
+
+/* ---------- keyboard shortcuts ---------- */
+(function(){
+  const overlay = $('kbd-overlay');
   const sections = ['experience','projects','skills','contact'];
-  const toggleHelp = (show) => overlay.classList.toggle('show', show);
-  overlay.addEventListener('click', e => { if(e.target === overlay) toggleHelp(false); });
+  const showHelp = (show) => overlay.classList.toggle('show', show);
+  overlay.addEventListener('click', e => { if(e.target === overlay) showHelp(false); });
 
   let lastG = 0;
-  let kIdx = 0;
 
   document.addEventListener('keydown', e => {
-    const typing = /^(INPUT|TEXTAREA)$/.test(document.activeElement.tagName);
+    if(e.metaKey || e.ctrlKey || e.altKey) return;
+    const el = document.activeElement;
+    if(el && (/^(INPUT|TEXTAREA)$/.test(el.tagName) || el.isContentEditable)) return;
 
-    if(typing) return;
-
-    if(e.key === '?'){ toggleHelp(!overlay.classList.contains('show')); return; }
-    if(e.key === 'Escape'){ toggleHelp(false); return; }
-    if(e.key === 't'){ toggleTheme(); return; }
-    if(e.key === 'i'){ toggleIPA(); return; }
-    if(e.key === 'g'){
-      const now = Date.now();
-      if(now - lastG < 450){ window.scrollTo({top:0, behavior:'smooth'}); lastG = 0; }
-      else lastG = now;
-      return;
-    }
-    if(e.key >= '1' && e.key <= '4'){
-      const el = document.getElementById(sections[+e.key - 1]);
-      if(el) el.scrollIntoView({behavior:'smooth'});
+    switch(e.key){
+      case '?': showHelp(!overlay.classList.contains('show')); break;
+      case 'Escape': showHelp(false); break;
+      case 't': toggleTheme(); break;
+      case 'i': toggleIPA(); break;
+      case '/': {
+        e.preventDefault();
+        $('skills').scrollIntoView({behavior:'smooth'});
+        $('skill-filter').focus({preventScroll:true});
+        break;
+      }
+      case 'g': {
+        const now = Date.now();
+        if(now - lastG < 450){ window.scrollTo({top:0, behavior:'smooth'}); lastG = 0; }
+        else lastG = now;
+        break;
+      }
+      default: {
+        if(e.key >= '1' && e.key <= '4'){
+          const target = $(sections[+e.key - 1]);
+          if(target) target.scrollIntoView({behavior:'smooth'});
+        }
+      }
     }
   });
 })();
