@@ -1,4 +1,4 @@
-<!DOCTYPE html><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <script>document.documentElement.classList.add('js')</script>
@@ -33,8 +33,8 @@
     --radius-sm:4px;
     --radius:6px;
     --radius-lg:12px;
-    --rail:10rem;
-    --gutter:clamp(1rem,5vw,4rem);
+    --rail:8.5rem;
+    --gutter:clamp(1rem,3.5vw,2.5rem);
     --ease:cubic-bezier(.16,1,.3,1);
     --serif:'Fraunces','Newsreader',Georgia,serif;
     --sans:'Geist','SF Pro Display','Helvetica Neue',sans-serif;
@@ -84,13 +84,13 @@
   @keyframes drift{to{transform:translate(25vmax,20vmax)}}
 
   /* ---------- LAYOUT ---------- */
-  .wrap{max-width:68rem;margin:0 auto;padding-inline:var(--gutter)}
+  .wrap{max-width:74rem;margin:0 auto;padding-inline:var(--gutter)}
   .rail{display:grid;grid-template-columns:var(--rail) minmax(0,1fr);gap:var(--gutter)}
   .sec-label{position:sticky;top:5.5rem;align-self:start}
   .sec-label .num{display:block;margin-bottom:.4rem}
   .sec-label h2{overflow-wrap:anywhere}
   @media(max-width:860px){
-    .rail{grid-template-columns:1fr;gap:1.6rem}
+    .rail{grid-template-columns:1fr;gap:1.1rem}
     .sec-label{position:static;display:flex;align-items:baseline;gap:.8rem}
     .sec-label .num{margin-bottom:0}
   }
@@ -171,14 +171,14 @@
   .ipa-explainer.show{transform:translateY(0);visibility:visible}
 
   /* ---------- MASTHEAD ---------- */
-  header{padding-top:9rem}
+  header{padding-top:6.5rem}
   .masthead{
     display:grid;grid-template-columns:minmax(0,1fr) 16rem;
-    gap:var(--gutter);align-items:end;padding-bottom:4.5rem;
+    gap:var(--gutter);align-items:end;padding-bottom:3rem;
   }
   @media(max-width:860px){
-    .masthead{grid-template-columns:1fr;gap:2.6rem;align-items:start}
-    header{padding-top:7rem}
+    .masthead{grid-template-columns:1fr;gap:1.8rem;align-items:start}
+    header{padding-top:5rem}
   }
   .mast-eyebrow{margin-bottom:1.4rem}
   h1 em{font-style:italic;font-weight:300;color:var(--accent)}
@@ -205,7 +205,7 @@
 
   .mast-rail{
     background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);
-    padding:1.5rem 1.6rem;
+    padding:1.25rem 1.4rem;
   }
   .mast-rail dt{margin-top:1.1rem}
   .mast-rail dt:first-child{margin-top:0}
@@ -217,23 +217,25 @@
 
   /* signal strip: full-bleed, the one element that ignores the measure */
   .signal-strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1.1rem 0 .4rem}
-  .signal-label{display:flex;align-items:center;gap:.55rem;padding-inline:var(--gutter);max-width:68rem;margin:0 auto}
+  .signal-label{display:flex;align-items:center;gap:.55rem;padding-inline:var(--gutter);max-width:74rem;margin:0 auto}
   .signal-dot{width:6px;height:6px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
   @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
   #signal{display:block;width:100%;height:132px}
+  @media(max-width:620px){#signal{height:96px}.signal-strip{padding-top:.9rem}}
+  @media(hover:none){.mast-rail .kbd-hint{display:none}}
 
   /* ---------- SECTIONS ---------- */
-  section{padding-block:clamp(3.5rem,7vw,5.5rem)}
-  #experience{padding-top:clamp(4rem,8vw,6rem)}
+  section{padding-block:clamp(2.5rem,5vw,4rem)}
+  #experience{padding-top:clamp(2.5rem,5vw,3.5rem)}
 
   /* experience: company and dates share a baseline, joined by a leader rule */
-  .job{padding:2rem 0;border-top:1px solid var(--line)}
+  .job{padding:1.6rem 0;border-top:1px solid var(--line)}
   .job:first-child{border-top:none;padding-top:0}
   .job-top{display:flex;align-items:baseline;gap:.8rem}
   .job-lead{flex:1;border-bottom:1px dotted var(--line-strong);transform:translateY(-.25em);min-width:1.5rem}
   .job-date{flex:none}
   .job .role{font-size:.9rem;color:var(--accent);font-weight:500;margin-top:.35rem}
-  .job ul{list-style:none;max-width:42rem;margin-top:1rem}
+  .job ul{list-style:none;max-width:48rem;margin-top:1rem}
   .job li{position:relative;padding-left:1.1rem;margin-bottom:.45rem;font-size:.94rem}
   .job li::before{content:'';position:absolute;left:0;top:.66em;width:4px;height:4px;border-radius:1px;background:var(--muted)}
   @media(max-width:620px){
@@ -246,7 +248,7 @@
   .bento{list-style:none;display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:1rem}
   .card{
     background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);
-    padding:2rem;display:flex;flex-direction:column;gap:.9rem;
+    padding:1.6rem;display:flex;flex-direction:column;gap:.8rem;
     transition:box-shadow .2s ease,border-color .2s ease;
   }
   .card:hover{box-shadow:0 2px 8px rgba(0,0,0,.04);border-color:var(--line-strong)}
@@ -263,7 +265,7 @@
   @media(max-width:860px){
     .card-a,.card-b{grid-column:span 12}
     .card-c{display:flex;align-items:stretch}
-    .card{padding:1.5rem}
+    .card{padding:1.25rem}
   }
 
   /* skills: a readable run of tools, not a wall of pills */
@@ -310,7 +312,7 @@
   @media(max-width:620px){.about-meta{grid-template-columns:1fr}}
 
   /* ---------- CONTACT ---------- */
-  footer{padding-block:clamp(3.5rem,7vw,5.5rem) 3rem}
+  footer{padding-block:clamp(2.5rem,5vw,4rem) 2rem}
   .foot-mail{
     display:inline-block;font-family:var(--serif);font-weight:400;
     font-size:clamp(1.45rem,4.6vw,2.9rem);letter-spacing:-.025em;color:var(--ink-strong);
@@ -319,8 +321,8 @@
   }
   .foot-mail:hover{color:var(--accent);border-color:var(--accent)}
   .contact-form{
-    max-width:34rem;margin-top:2.8rem;display:flex;flex-direction:column;gap:1.2rem;
-    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:2rem;
+    max-width:36rem;margin-top:2rem;display:flex;flex-direction:column;gap:1.1rem;
+    background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);padding:1.6rem;
   }
   .field{display:flex;flex-direction:column;gap:.4rem}
   .field label{cursor:text}
@@ -347,11 +349,11 @@
   .btn:hover{background:var(--btn-hover)}
   .btn:active{transform:scale(.98)}
   .btn:disabled{opacity:.55;cursor:default}
-  @media(max-width:620px){.contact-form{padding:1.4rem}}
+  @media(max-width:620px){.contact-form{padding:1.1rem}}
 
   .foot-meta{
     display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;
-    margin-top:4.5rem;padding-top:1.2rem;border-top:1px solid var(--line);
+    margin-top:3rem;padding-top:1.2rem;border-top:1px solid var(--line);
   }
   .foot-meta a{transition:color .2s}
   .foot-meta a:hover{color:var(--accent)}
@@ -978,873 +980,6 @@ $('ipa-toggle').addEventListener('click', toggleIPA);
     });
   }, {threshold:.1, rootMargin:'0px 0px -40px 0px'});
   els.forEach(el => io.observe(el));
-})();
-</script>
-</body>
-</html>
-
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aryanna Mong — /ɑː.riˈɒnə mɑːŋ/</title>
-<meta name="description" content="Aryanna Mong — CS + Linguistics @ UIUC. I build pipelines that turn noisy human signals (speech, EEG, language) into useful applications.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Archivo:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  /* ---------- TOKENS ---------- */
-  :root{
-    --forest:#1E4230;
-    --forest-deep:#12291E;
-    --moss:#6E8F73;
-    --leaf:#3E7A54;
-    --paper:#F3F5EF;
-    --paper-2:#EAEFE4;
-    --ink:#17231B;
-    --line:rgba(30,66,48,.18);
-    --radius:22px;
-  }
-  [data-theme="dark"]{
-    --forest:#CFE3D3;
-    --forest-deep:#EAF3EC;
-    --moss:#8FAF94;
-    --leaf:#7FBF93;
-    --paper:#0F1E16;
-    --paper-2:#16281E;
-    --ink:#DCE8DE;
-    --line:rgba(207,227,211,.18);
-  }
-
-  /* ---------- BASE ---------- */
-  *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{
-    background:var(--paper);
-    color:var(--ink);
-    font-family:'Archivo',sans-serif;
-    font-size:16px;
-    line-height:1.6;
-    -webkit-font-smoothing:antialiased;
-  }
-  ::selection{background:var(--forest);color:var(--paper)}
-  a{color:inherit;text-decoration:none}
-  a:focus-visible,button:focus-visible{outline:2px solid var(--leaf);outline-offset:3px;border-radius:4px}
-  body,nav,.card,.about{transition:background .35s ease,color .35s ease,border-color .35s ease}
-
-  .grain{
-    position:fixed;inset:0;z-index:9999;pointer-events:none;
-    opacity:.055;mix-blend-mode:overlay;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-  [data-theme="dark"] .grain{opacity:.08;mix-blend-mode:screen}
-
-  /* ---------- TYPE HELPERS ---------- */
-  .mono{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--moss)}
-  .comment{font-family:'IBM Plex Mono',monospace;font-size:.75rem;letter-spacing:.02em;color:var(--moss);text-transform:none}
-  .comment::before{content:'// '}
-  .kbd-hint{text-transform:none;letter-spacing:.02em}
-
-  /* ---------- BUTTONS ---------- */
-  .btn{
-    display:inline-block;padding:.75rem 1.6rem;border-radius:999px;
-    font-size:.88rem;font-weight:500;border:1px solid var(--forest);
-    transition:background .2s,color .2s,transform .2s;
-  }
-  .btn.solid{background:var(--forest);color:var(--paper)}
-  .btn.solid:hover{background:var(--forest-deep);transform:translateY(-2px)}
-  .btn.ghost{color:var(--forest)}
-  .btn.ghost:hover{background:var(--forest);color:var(--paper);transform:translateY(-2px)}
-
-  .icon-btn{
-    height:34px;border-radius:999px;
-    border:1px solid var(--line);background:transparent;color:var(--forest);
-    cursor:pointer;display:inline-grid;place-items:center;
-    font-family:'IBM Plex Mono',monospace;font-size:.8rem;
-    transition:background .2s,transform .2s,border-color .2s;
-  }
-  .theme-btn{width:34px;font-size:.95rem}
-  .theme-btn:hover{background:var(--paper-2);transform:rotate(15deg)}
-  .ipa-btn{padding:0 .7rem;letter-spacing:.02em}
-  .ipa-btn:hover{background:var(--paper-2)}
-  .ipa-btn[aria-pressed="true"]{background:var(--forest);color:var(--paper);border-color:var(--forest)}
-
-  /* ---------- IPA EXPLAINER BANNER ---------- */
-  .ipa-explainer{
-    position:fixed;top:var(--nav-h,3.5rem);left:0;right:0;z-index:45;
-    padding:.75rem 5vw;
-    background:var(--forest);color:var(--paper);
-    font-family:'IBM Plex Mono',monospace;font-size:.72rem;line-height:1.8;
-    transform:translateY(calc(-100% - var(--nav-h, 3.5rem)));
-    transition:transform .35s ease, visibility .35s;
-    visibility:hidden;
-  }
-  .ipa-explainer.show{transform:translateY(0);visibility:visible}
-  .ipa-explainer b{color:#A9C4A6;font-weight:500}
-  [data-theme="dark"] .ipa-explainer{background:var(--paper-2);color:var(--ink)}
-  [data-theme="dark"] .ipa-explainer b{color:var(--leaf)}
-
-  /* ---------- NAV ---------- */
-  nav{
-    position:fixed;top:0;left:0;right:0;z-index:50;
-    display:flex;justify-content:space-between;align-items:center;
-    padding:1.1rem 5vw;
-    background:rgba(243,245,239,.82);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--line);
-  }
-  [data-theme="dark"] nav{background:rgba(15,30,22,.82)}
-  .nav-name{font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:.9rem;color:var(--forest);letter-spacing:.02em}
-  .nav-name .caret{color:var(--leaf);animation:blink 1.1s step-end infinite}
-  @keyframes blink{50%{opacity:0}}
-  .nav-links{display:flex;gap:2rem;align-items:center}
-  .nav-links a{font-size:.85rem;font-weight:500;color:var(--forest);position:relative}
-  .nav-links a::after{content:'';position:absolute;left:0;bottom:-4px;width:0;height:1.5px;background:var(--leaf);transition:width .25s ease}
-  .nav-links a:hover::after{width:100%}
-  @media(max-width:640px){.nav-links{gap:1.1rem}.nav-links a{font-size:.78rem}.nav-links .hide-sm{display:none}}
-
-  /* ---------- HERO ---------- */
-  header{
-    min-height:100svh;
-    display:flex;flex-direction:column;justify-content:center;
-    padding:7rem 5vw 3rem;
-    position:relative;overflow:hidden;
-  }
-  .hero-eyebrow{margin-bottom:1.4rem}
-  h1{
-    font-family:'Fraunces',serif;font-weight:400;
-    font-size:clamp(3.2rem,10vw,7.5rem);
-    line-height:1.02;letter-spacing:-.02em;color:var(--forest);
-  }
-  h1 em{font-style:italic;font-weight:300;color:var(--leaf)}
-
-  /* pronunciation: plain spelling first, IPA one click away */
-  .pron{
-    margin-top:1.1rem;display:inline-flex;align-items:center;gap:.7rem;flex-wrap:wrap;
-    font-family:'IBM Plex Mono',monospace;font-size:1.05rem;color:var(--moss);
-    background:none;border:none;padding:0;cursor:pointer;text-align:left;
-  }
-  .pron b{
-    color:var(--leaf);font-weight:500;
-    text-decoration:underline dotted;text-decoration-color:var(--line);text-underline-offset:6px;
-  }
-  .pron .say{
-    font-family:'IBM Plex Mono',monospace;font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;
-    color:var(--forest);background:var(--paper-2);
-    border:1px solid var(--line);border-radius:999px;padding:.28rem .65rem;
-    transition:background .2s,color .2s,border-color .2s;
-  }
-  .pron:hover .say{background:var(--forest);color:var(--paper);border-color:var(--forest)}
-  .pron:hover b{text-decoration-color:var(--leaf)}
-
-  .hero-sub{
-    max-width:36rem;margin-top:1.8rem;
-    font-size:1.05rem;color:var(--ink);opacity:.9;
-  }
-  .hero-cta{display:flex;gap:1rem;margin-top:2.2rem;flex-wrap:wrap;align-items:center}
-
-  /* signature: the signal */
-  .signal-wrap{position:relative;margin-top:3.5rem}
-  #signal{display:block;width:100%;height:150px}
-  .signal-label{
-    position:absolute;top:-1.4rem;right:0;
-    display:flex;align-items:center;gap:.5rem;
-  }
-  .signal-dot{width:7px;height:7px;border-radius:50%;background:var(--leaf);animation:pulse 2s infinite}
-  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.25}}
-
-  /* ---------- SECTIONS ---------- */
-  section{padding:5.5rem 5vw;max-width:1300px;margin:0 auto}
-  .sec-head{
-    display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
-    border-bottom:1px solid var(--line);padding-bottom:1rem;margin-bottom:3rem;
-  }
-  .sec-head .h-wrap{display:flex;align-items:baseline;gap:.9rem;flex-wrap:wrap}
-  h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(1.9rem,4vw,2.8rem);color:var(--forest);letter-spacing:-.01em}
-
-  /* experience */
-  .job{
-    display:grid;grid-template-columns:180px 1fr;gap:2rem;
-    padding:2rem 0;border-bottom:1px solid var(--line);
-  }
-  .job:last-child{border-bottom:none}
-  .job h3{font-family:'Fraunces',serif;font-weight:500;font-size:1.35rem;color:var(--forest)}
-  .job .role{font-size:.92rem;color:var(--leaf);font-weight:500;margin-bottom:.7rem}
-  .job ul{list-style:none;max-width:44rem}
-  .job li{position:relative;padding-left:1.2rem;margin-bottom:.45rem;font-size:.95rem;opacity:.88}
-  .job li::before{content:'';position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--moss)}
-  @media(max-width:700px){.job{grid-template-columns:1fr;gap:.4rem}}
-
-  /* projects */
-  .proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:1.4rem}
-  .card{
-    background:var(--paper-2);
-    border:1px solid var(--line);
-    border-radius:var(--radius);
-    padding:1.8rem;
-    display:flex;flex-direction:column;gap:.9rem;
-    transition:transform .25s ease,box-shadow .25s ease,border-color .25s;
-  }
-  .card:hover{transform:translateY(-5px);box-shadow:0 14px 30px rgba(18,41,30,.12);border-color:var(--leaf)}
-  .card h3{font-family:'Fraunces',serif;font-weight:500;font-size:1.3rem;color:var(--forest)}
-  .card p{font-size:.93rem;opacity:.88;flex:1}
-  .chips{display:flex;flex-wrap:wrap;gap:.4rem}
-  .chip{
-    font-family:'IBM Plex Mono',monospace;font-size:.66rem;letter-spacing:.05em;
-    padding:.28rem .65rem;border-radius:999px;
-    border:1px solid var(--line);color:var(--forest);
-    background:transparent;
-  }
-  /* skill chips are real buttons: click one and it says where it was used */
-  button.chip{
-    background:var(--paper-2);cursor:pointer;line-height:inherit;
-    transition:background .2s,color .2s,border-color .2s,transform .2s;
-  }
-  button.chip:hover{border-color:var(--leaf);transform:translateY(-2px)}
-  button.chip.is-active{background:var(--forest);color:var(--paper);border-color:var(--forest)}
-  .chip.is-hidden{display:none}
-
-  /* skills */
-  .skill-filter{
-    font-family:'IBM Plex Mono',monospace;font-size:.75rem;
-    color:var(--ink);background:var(--paper-2);
-    border:1px solid var(--line);border-radius:999px;
-    padding:.4rem .9rem;width:10rem;max-width:42vw;
-    transition:border-color .2s,width .25s ease;
-  }
-  .skill-filter::placeholder{color:var(--moss)}
-  .skill-filter:focus{outline:none;border-color:var(--leaf);width:12.5rem}
-  .skill-readout{margin:-1.9rem 0 2.2rem;min-height:1.7em}
-  .skill-row{
-    display:grid;grid-template-columns:220px 1fr;gap:1.5rem;
-    padding:1.3rem 0;border-bottom:1px solid var(--line);align-items:baseline;
-  }
-  .skill-row:last-child{border-bottom:none}
-  .skill-row.is-empty{display:none}
-  @media(max-width:700px){.skill-row{grid-template-columns:1fr;gap:.5rem}}
-  /* chips fade in one after another instead of landing as a block */
-  @media(prefers-reduced-motion:no-preference){
-    .skill-row .chip{opacity:0;transition:opacity .45s ease;transition-delay:var(--d,0s)}
-    .skill-row.in .chip{opacity:1}
-  }
-
-  /* about strip — the panel inverts in dark mode, so its own
-     foreground tokens have to invert with it, not just inherit */
-  .about{
-    --about-muted:#A9C4A6;
-    --about-chip-line:rgba(243,245,239,.3);
-    background:var(--forest);color:var(--paper);
-    border-radius:var(--radius);
-    padding:3.5rem clamp(1.5rem,5vw,8rem);
-  }
-  [data-theme="dark"] .about{
-    --about-muted:#2F5540;
-    --about-chip-line:rgba(18,41,30,.28);
-  }
-  .about h2{color:var(--paper)}
-  .about .mono{color:var(--about-muted)}
-  .about p{max-width:46rem;margin-top:1.2rem;opacity:.92}
-  .about .lang{margin-top:1.6rem;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
-  .about .chip{border-color:var(--about-chip-line);color:var(--paper)}
-
-  /* ---------- CONTACT ---------- */
-  .contact-form{
-    max-width:34rem;margin-top:2.5rem;
-    display:flex;flex-direction:column;gap:1rem;
-  }
-  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
-  @media(max-width:560px){.form-row{grid-template-columns:1fr}}
-  .contact-form input,
-  .contact-form textarea{
-    width:100%;padding:.85rem 1.1rem;
-    font-family:'Archivo',sans-serif;font-size:.95rem;
-    color:var(--ink);background:var(--paper-2);
-    border:1px solid var(--line);border-radius:14px;
-    transition:border-color .2s,background .2s;
-  }
-  .contact-form textarea{min-height:140px;resize:vertical}
-  .contact-form input::placeholder,
-  .contact-form textarea::placeholder{color:var(--moss);opacity:.8}
-  .contact-form input:focus,
-  .contact-form textarea:focus{outline:none;border-color:var(--leaf)}
-  .form-status{font-size:.85rem;color:var(--leaf);min-height:1.2em}
-  .contact-form .btn{align-self:flex-start;cursor:pointer;font-family:'Archivo',sans-serif}
-
-  /* ---------- FOOTER ---------- */
-  footer{padding:5.5rem 5vw 3rem;max-width:1300px;margin:0 auto;text-align:left}
-  .foot-mail{
-    font-family:'Fraunces',serif;font-weight:400;
-    font-size:clamp(1.6rem,5vw,3.4rem);color:var(--forest);
-    border-bottom:2px solid transparent;transition:border-color .2s;
-    word-break:break-all;
-  }
-  .foot-mail:hover{border-color:var(--leaf)}
-  .foot-meta{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--line)}
-  .foot-meta a:hover{color:var(--leaf)}
-
-  /* ---------- UTILITIES ---------- */
-  .to-top{
-    position:fixed;bottom:1.6rem;right:1.6rem;z-index:40;
-    width:44px;height:44px;border-radius:50%;
-    border:1px solid var(--line);background:var(--paper);color:var(--forest);
-    cursor:pointer;font-size:1.1rem;
-    opacity:0;pointer-events:none;transform:translateY(8px);
-    transition:opacity .3s,transform .3s,background .2s;
-    box-shadow:0 6px 18px rgba(18,41,30,.15);
-  }
-  .to-top.show{opacity:1;pointer-events:auto;transform:none}
-  .to-top:hover{background:var(--paper-2)}
-
-  .kbd-overlay{
-    position:fixed;inset:0;z-index:200;display:none;
-    place-items:center;background:rgba(18,41,30,.45);backdrop-filter:blur(4px);
-  }
-  .kbd-overlay.show{display:grid}
-  .kbd-panel{
-    background:var(--paper);border:1px solid var(--line);border-radius:18px;
-    padding:2rem 2.2rem;max-width:24rem;width:calc(100% - 3rem);
-    box-shadow:0 20px 60px rgba(18,41,30,.3);
-  }
-  .kbd-panel h3{font-family:'Fraunces',serif;font-weight:500;color:var(--forest);font-size:1.3rem;margin-bottom:1.2rem}
-  .kbd-row{display:flex;justify-content:space-between;align-items:center;padding:.35rem 0;font-size:.9rem}
-  .kbd-row span:last-child{color:var(--moss)}
-  kbd{
-    font-family:'IBM Plex Mono',monospace;font-size:.72rem;
-    padding:.15rem .5rem;border:1px solid var(--line);border-bottom-width:2px;
-    border-radius:6px;background:var(--paper-2);color:var(--forest);
-  }
-
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
-  .reveal.in{opacity:1;transform:none}
-  @media(prefers-reduced-motion:reduce){
-    .reveal{opacity:1;transform:none;transition:none}
-    .signal-dot,.nav-name .caret{animation:none}
-    html{scroll-behavior:auto}
-  }
-</style>
-</head>
-<body>
-<div class="grain" aria-hidden="true"></div>
-
-<nav>
-  <a class="nav-name" href="#top">aryanna@mong:~<span class="caret">▊</span></a>
-  <div class="nav-links">
-    <a class="hide-sm" href="#experience">Experience</a>
-    <a class="hide-sm" href="#projects">Projects</a>
-    <a class="hide-sm" href="#skills">Skills</a>
-    <a href="#contact">Contact</a>
-    <button class="icon-btn ipa-btn" id="ipa-toggle" aria-pressed="false" title="Transcribe the page into IPA (press i)">/ipa/</button>
-    <button class="icon-btn theme-btn" id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode (press t)">◐</button>
-  </div>
-</nav>
-
-<div class="ipa-explainer" id="ipa-explainer" role="status" aria-live="polite">
-  <b>ipa</b> = the international phonetic alphabet! A universal way for linguists to write phonetic sounds
-</div>
-
-<header id="top">
-  <p class="comment hero-eyebrow">cs + linguistics @ uiuc</p>
-  <h1 data-ipa="/ɑː.riˈɒnə mɑːŋ/">Aryanna Mong</h1>
-
-  <button class="pron" id="pron"
-          aria-label="Switch pronunciation between plain spelling and IPA"
-          data-plain="ar-ree-AH-nuh mong"
-          data-plain-hint="click for IPA"
-          data-ipa="/ɑː.riˈɒnə mɑːŋ/"
-          data-ipa-hint="click for plain spelling">
-    <b id="pron-text">ar-ree-AH-nuh mong</b>
-    <span class="say" id="pron-hint">click for IPA</span>
-  </button>
-
-  <p class="hero-sub">I build things that turn noisy human signals (speech, EEG, language) into something a computer can actually use. Currently a middleware intern at Synchrony, lead dev on an EEG-driven VR project, and a CS + linguistics student.</p>
-
-  <div class="hero-cta">
-    <a class="btn solid" href="#experience">See my work</a>
-    <a class="btn ghost" href="https://linkedin.com/in/aryannamong" target="_blank" rel="noopener">LinkedIn</a>
-    <span class="mono kbd-hint">or press <kbd>?</kbd> for shortcuts</span>
-  </div>
-
-  <div class="signal-wrap">
-    <div class="signal-label"><span class="signal-dot"></span><span class="mono" id="signal-text">signal: idle — move your cursor</span></div>
-    <canvas id="signal" aria-hidden="true"></canvas>
-  </div>
-</header>
-
-<section id="experience">
-  <div class="sec-head reveal">
-    <div class="h-wrap"><h2 data-ipa="/ɪkˈspɪɹiəns/">Experience</h2></div>
-  </div>
-
-  <div class="job reveal">
-    <div><p class="mono">May 2026 — Present</p></div>
-    <div>
-      <h3>Synchrony Financial</h3>
-      <p class="role">Software Engineer Intern · Middleware Team</p>
-      <ul>
-        <li>Developed a decoupled Spring Boot microservice in an Agile environment to optimize asynchronous REST API routes</li>
-        <li>Validated API performance and endpoint security using Postman for integration testing across middleware boundaries</li>
-        <li>Architected data pipelines monitored via Splunk, leveraging automated exception handling to ensure data integrity</li>
-        <li>Built a vulnerability-filtering GitHub Copilot agent for the Hunters security team</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="job reveal">
-    <div><p class="mono">Sept 2024 — Present</p></div>
-    <div>
-      <h3>NeuroTech @ UIUC</h3>
-      <p class="role">Lead Developer · VR NeuroFeedback Project</p>
-      <ul>
-        <li>Designing Bluetooth Low Energy sensors for low-latency communication between embedded sensors and the game</li>
-        <li>Building VR and Windows games in Unity that adapt dynamically to user responses using EEG data streams</li>
-        <li>Implementing WebSocket-based scripts to integrate real-time VR neurofeedback therapy into interactive games</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="job reveal">
-    <div><p class="mono">Aug 2025 — May 2026</p></div>
-    <div>
-      <h3>UIUC Gies College of Business</h3>
-      <p class="role">Research Intern</p>
-      <ul>
-        <li>Engineered an automated pipeline using HuggingFace models to extract and structure data from 2,500+ unformatted text feeds</li>
-        <li>Researched methods to analyze the economic impact of advertising "USA made" products under Prof. Takeda &amp; Feng</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="job reveal">
-    <div><p class="mono">Feb 2025 — May 2026</p></div>
-    <div>
-      <h3>UIUC Siebel School of Computing and Data Science</h3>
-      <p class="role">Undergraduate Researcher</p>
-      <ul>
-        <li>Built a speech processing pipeline with OpenAI Whisper and PyAnnote for voice diarization and multi-stream transcription</li>
-        <li>Architected and implemented multiple client-facing applications using Python and PsychoPy</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="job reveal">
-    <div><p class="mono">Aug 2025 — Jan 2026</p></div>
-    <div>
-      <h3>Ascend UIUC Chapter</h3>
-      <p class="role">DEI Director</p>
-      <ul>
-        <li>Directed the chapter's DEI strategy through targeted workshops and presentations for 150+ members</li>
-        <li>Collaborated with 2+ external groups to host large-scale events, increasing visibility and attendance by 80%</li>
-        <li>Managed multiple high-priority initiatives across 6 internal departments in a fast-paced setting</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section id="projects">
-  <div class="sec-head reveal">
-    <div class="h-wrap"><h2 data-ipa="/ˈpɹɑdʒɛkts/">Projects</h2></div>
-  </div>
-  <div class="proj-grid">
-    <div class="card reveal">
-      <h3>AxB Speech Perception Interface</h3>
-      <p>A Python experimental interface with randomized stimulus presentation, deployed in a Phase 1 trial serving 200+ students and enabling large-scale speech perception research.</p>
-      <div class="chips"><span class="chip">Python</span><span class="chip">PsychoPy</span><span class="chip">Pavlovia</span><span class="chip">GitLab</span></div>
-    </div>
-    <div class="card reveal">
-      <h3>Business Operations Monitor</h3>
-      <p>Classified company stances on Russia post-2022 across 5,000+ news articles. Swapping brittle regex for DistilBERT semantic analysis pushed precision from 65% → 92%.</p>
-      <div class="chips"><span class="chip">Python</span><span class="chip">PyTorch</span><span class="chip">Pandas</span><span class="chip">Regex</span><span class="chip">NLTK</span><span class="chip">TensorFlow</span></div>
-    </div>
-    <div class="card reveal">
-      <h3>FindMyIllini</h3>
-      <p>A React navigation tool that helps UIUC students find resources and rooms inside Grainger Library — dynamic map, interactive buttons, and the specific relief of never getting lost on the 3rd floor again.</p>
-      <div class="chips"><span class="chip">React.js</span><span class="chip">JavaScript</span><span class="chip">Figma</span><span class="chip">CSS</span></div>
-    </div>
-  </div>
-</section>
-
-<section id="skills">
-  <div class="sec-head reveal">
-    <div class="h-wrap"><h2 data-ipa="/skɪlz/">Skills</h2></div>
-    <input class="skill-filter" id="skill-filter" type="search" placeholder="filter…"
-           aria-label="Filter skills" autocomplete="off" spellcheck="false">
-  </div>
-  <p class="comment skill-readout" id="skill-readout" role="status" aria-live="polite">tap a tool to see where I actually used it</p>
-  <div class="skill-row reveal">
-    <p class="mono">Languages</p>
-    <div class="chips">
-      <button class="chip" type="button" data-note="spring boot services on synchrony's middleware team">Java</button>
-      <button class="chip" type="button" data-note="the whisper + pyannote speech pipeline, psychopy experiments, the news classifier">Python</button>
-      <button class="chip" type="button" data-note="systems / data structures coursework">C++</button>
-      <button class="chip" type="button" data-note="unity gameplay and eeg integration for the vr neurofeedback project">C#</button>
-      <button class="chip" type="button" data-note="cs233: computer architecture">C</button>
-      <button class="chip" type="button" data-note="findmyillini's interasction">JavaScript</button>
-      <button class="chip" type="button" data-note="findmyillini main structure">HTML</button>
-      <button class="chip" type="button" data-note="findmyillini's frontend">CSS</button>
-      <button class="chip" type="button" data-note="cs233: computer architecture">Verilog</button>
-    </div>
-  </div>
-  <div class="skill-row reveal">
-    <p class="mono">Frameworks</p>
-    <div class="chips">
-      <button class="chip" type="button" data-note="findmyillini, the grainger library wayfinder">React.js</button>
-      <button class="chip" type="button" data-note="personal projects">Next.js</button>
-      <button class="chip" type="button" data-note="vr and windows neurofeedback games at neurotech @ uiuc">Unity</button>
-      <button class="chip" type="button" data-note="personal projects">Android Studio</button>
-    </div>
-  </div>
-  <div class="skill-row reveal">
-    <p class="mono">AI / ML &amp; Data</p>
-    <div class="chips">
-      <button class="chip" type="button" data-note="whisper, for diarized multi-stream transcription">OpenAI</button>
-      <button class="chip" type="button" data-note="model pipelines over 2,500+ unformatted text feeds at gies">HuggingFace</button>
-      <button class="chip" type="button" data-note="tokenizing and cleaning the news data set">NLTK</button>
-      <button class="chip" type="button" data-note="turning 5,000+ scraped articles into something queryable">Pandas</button>
-      <button class="chip" type="button" data-note="linear algebra coursework">NumPy</button>
-      <button class="chip" type="button" data-note="distilbert fine-tuning — the jump from 65% to 92% precision">PyTorch</button>
-      <button class="chip" type="button" data-note="model experiments alongside pytorch">TensorFlow</button>
-    </div>
-  </div>
-  <div class="skill-row reveal">
-    <p class="mono">Infra &amp; DevOps</p>
-    <div class="chips">
-      <button class="chip" type="button" data-note="cs411: database coursework">MongoDB</button>
-      <button class="chip" type="button" data-note="containerizing services in coursework">Docker</button>
-      <button class="chip" type="button" data-note="version control for every project/homework">Git</button>
-      <button class="chip" type="button" data-note="automated build and test pipelines at synchrony">CI/CD</button>
-      <button class="chip" type="button" data-note="integration testing api performance and endpoint security">Postman</button>
-      <button class="chip" type="button" data-note="building and dependency-managing the spring services">Maven</button>
-      <button class="chip" type="button" data-note="ide on the middleware team">Spring Tool Suite</button>
-    </div>
-  </div>
-</section>
-
-<section>
-  <div class="about reveal">
-    <p class="mono">about</p>
-    <h2 data-ipa="CS × /lɪŋˈɡwɪstɪks/">CS × Linguistics</h2>
-    <p>I study computer science + linguistics at the University of Illinois Urbana-Champaign. Whether it's speech, EEG signals, or language data, they are all the same just written in different fonts: noisy human signal. My curiosity and passion for this has led me to build pipelines and interfaces to manage it. US citizen, eligible for security clearance.</p>
-    <div class="lang">
-      <span class="chip">English</span><span class="chip">Vietnamese</span><span class="chip">Spanish</span><span class="chip">Cantonese</span>
-    </div>
-  </div>
-</section>
-
-<footer id="contact">
-  <p class="comment reveal">connect with me!</p>
-  <a class="foot-mail reveal" href="mailto:aryanna.mong@gmail.com">aryanna.mong@gmail.com</a>
-
-  <form class="contact-form reveal" id="contact-form" action="https://formspree.io/f/mbdnjjpz" method="POST">
-    <div class="form-row">
-      <input type="text" name="name" placeholder="Your name" required autocomplete="name">
-      <input type="email" name="email" placeholder="Your email" required autocomplete="email">
-    </div>
-    <input type="text" name="subject" placeholder="Subject" required>
-    <textarea name="message" placeholder="Begin typing here..." required></textarea>
-    <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
-    <button class="btn solid" type="submit">Send message</button>
-  </form>
-
-  <div class="foot-meta">
-    <span class="mono">built by aryanna mong · © 2026</span>
-    <a class="mono" href="https://linkedin.com/in/aryannamong" target="_blank" rel="noopener">LinkedIn ↗</a>
-  </div>
-</footer>
-
-<button class="to-top" id="to-top" aria-label="Back to top" title="Back to top">↑</button>
-
-<div class="kbd-overlay" id="kbd-overlay" role="dialog" aria-modal="true" aria-label="Keyboard shortcuts">
-  <div class="kbd-panel">
-    <h3>keyboard shortcuts</h3>
-    <div class="kbd-row"><span>Jump to section</span><span><kbd>1</kbd>–<kbd>4</kbd></span></div>
-    <div class="kbd-row"><span>Toggle IPA mode</span><span><kbd>i</kbd></span></div>
-    <div class="kbd-row"><span>Filter skills</span><span><kbd>/</kbd></span></div>
-    <div class="kbd-row"><span>Toggle dark mode</span><span><kbd>t</kbd></span></div>
-    <div class="kbd-row"><span>Back to top</span><span><kbd>g</kbd> <kbd>g</kbd></span></div>
-    <div class="kbd-row"><span>This menu</span><span><kbd>?</kbd></span></div>
-    <div class="kbd-row"><span>Close</span><span><kbd>esc</kbd></span></div>
-  </div>
-</div>
-
-<script>
-const $ = (id) => document.getElementById(id);
-const isDark = () => document.documentElement.dataset.theme === 'dark';
-
-/* ---------- signal canvas ---------- */
-(function(){
-  const canvas = $('signal');
-  const label = $('signal-text');
-  const ctx = canvas.getContext('2d');
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const IDLE = 'signal: idle — move your cursor';
-
-  /* mirrors the CSS tokens; rgba layers can't be read straight off a var */
-  const PALETTE = {
-    light: [
-      {c:'rgba(110,143,115,.35)', lw:1,   off:1.3},
-      {c:'rgba(62,122,84,.55)',   lw:1.2, off:0.7},
-      {c:'#1E4230',               lw:1.8, off:0}
-    ],
-    dark: [
-      {c:'rgba(143,175,148,.35)', lw:1,   off:1.3},
-      {c:'rgba(127,191,147,.55)', lw:1.2, off:0.7},
-      {c:'#CFE3D3',               lw:1.8, off:0}
-    ]
-  };
-
-  let w, h;
-  let mouseX = -1000, energy = 0, t = 0;
-
-  function resize(){
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    w = canvas.offsetWidth; h = canvas.offsetHeight;
-    canvas.width = w * dpr; canvas.height = h * dpr;
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  }
-  resize();
-  window.addEventListener('resize', resize);
-
-  function track(x){
-    mouseX = x - canvas.getBoundingClientRect().left;
-    energy = Math.min(energy + 0.12, 1);
-    label.textContent = 'signal: listening';
-  }
-  window.addEventListener('mousemove', e => track(e.clientX));
-  window.addEventListener('touchmove', e => track(e.touches[0].clientX), {passive:true});
-
-  function wave(x, time, boost){
-    const base =
-      Math.sin(x * 0.012 + time) * 8 +
-      Math.sin(x * 0.03  + time * 1.7) * 4 +
-      Math.sin(x * 0.005 - time * 0.6) * 10;
-    const d = Math.abs(x - mouseX);
-    const bloom = Math.exp(-(d * d) / 14000) * 42 * boost;
-    return base + Math.sin(x * 0.09 + time * 6) * bloom;
-  }
-
-  function trace(time, boost, style, lineWidth){
-    ctx.beginPath();
-    for(let x = 0; x <= w; x += 3){
-      const y = h / 2 + wave(x, time, boost);
-      x === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
-    }
-    ctx.strokeStyle = style; ctx.lineWidth = lineWidth; ctx.stroke();
-  }
-
-  function draw(){
-    ctx.clearRect(0, 0, w, h);
-    for(const layer of PALETTE[isDark() ? 'dark' : 'light']){
-      trace(t + layer.off, energy, layer.c, layer.lw);
-    }
-    energy *= 0.985;
-    if(energy < 0.02 && label.textContent !== IDLE) label.textContent = IDLE;
-    t += 0.016;
-    requestAnimationFrame(draw);
-  }
-
-  function staticTrace(){
-    energy = 0;
-    label.textContent = 'signal';
-    ctx.clearRect(0, 0, w, h);
-    trace(2, 0, isDark() ? '#CFE3D3' : '#1E4230', 1.8);
-  }
-
-  if(reduced){
-    staticTrace();
-    window.redrawSignal = staticTrace;
-  } else {
-    draw();
-    window.redrawSignal = () => {};
-  }
-})();
-
-/* ---------- theme ---------- */
-function toggleTheme(){
-  const root = document.documentElement;
-  root.dataset.theme = isDark() ? '' : 'dark';
-  window.redrawSignal();
-}
-$('theme-toggle').addEventListener('click', toggleTheme);
-
-/* ---------- IPA mode ----------
-   Flip the whole page between English and how it actually sounds.
-   Transcriptions are hand-written; this is a linguistics site, after all. */
-const toggleIPA = (function(){
-  const btn = $('ipa-toggle');
-  const explainer = $('ipa-explainer');
-  const nodes = [...document.querySelectorAll('h1[data-ipa], h2[data-ipa]')];
-  nodes.forEach(n => n.dataset.en = n.textContent);
-  let on = false;
-
-  /* keep the banner sitting exactly under the nav */
-  const nav = document.querySelector('nav');
-  const setNavH = () =>
-    document.documentElement.style.setProperty('--nav-h', nav.offsetHeight + 'px');
-  setNavH();
-  window.addEventListener('resize', setNavH);
-
-  return function(){
-    on = !on;
-    nodes.forEach(n => { n.textContent = on ? n.dataset.ipa : n.dataset.en; });
-    btn.setAttribute('aria-pressed', String(on));
-    explainer.classList.toggle('show', on);
-  };
-})();
-$('ipa-toggle').addEventListener('click', toggleIPA);
-
-/* ---------- name pronunciation ---------- */
-(function(){
-  const btn = $('pron');
-  const text = $('pron-text');
-  const hint = $('pron-hint');
-  let showingIPA = false;
-  btn.addEventListener('click', () => {
-    showingIPA = !showingIPA;
-    text.textContent = showingIPA ? btn.dataset.ipa : btn.dataset.plain;
-    hint.textContent = showingIPA ? btn.dataset.ipaHint : btn.dataset.plainHint;
-  });
-})();
-
-/* ---------- contact form ---------- */
-(function(){
-  const form = $('contact-form');
-  const status = $('form-status');
-  const btn = form.querySelector('button[type="submit"]');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    btn.disabled = true;
-    status.textContent = 'Sending…';
-    try{
-      const res = await fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: {'Accept': 'application/json'}
-      });
-      if(res.ok){
-        form.reset();
-        status.textContent = 'Message sent. I\'ll get back to you soon.';
-      } else {
-        status.textContent = 'Something went wrong. Email me directly instead.';
-      }
-    } catch {
-      status.textContent = 'Network error. Email me directly instead.';
-    }
-    btn.disabled = false;
-  });
-})();
-
-/* ---------- back to top ---------- */
-(function(){
-  const btn = $('to-top');
-  window.addEventListener('scroll', () => {
-    btn.classList.toggle('show', window.scrollY > 600);
-  }, {passive:true});
-  btn.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
-})();
-
-/* ---------- scroll reveals ---------- */
-(function(){
-  const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
-    });
-  }, {threshold: 0.12});
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-})();
-
-/* ---------- skills: filter + click a tool to see where it was used ---------- */
-(function(){
-  const filter = $('skill-filter');
-  const readout = $('skill-readout');
-  const rows = [...document.querySelectorAll('.skill-row')];
-  const chips = [...document.querySelectorAll('.skill-row .chip')];
-  const PROMPT = 'tap a tool to see where I actually used it';
-  let active = null;
-
-  /* stagger each row's chips so they arrive in sequence, not all at once */
-  rows.forEach(row => [...row.querySelectorAll('.chip')].forEach((chip, i) => {
-    chip.style.setProperty('--d', (i * 0.035).toFixed(3) + 's');
-  }));
-
-  function clearActive(){
-    if(active) active.classList.remove('is-active');
-    active = null;
-  }
-
-  chips.forEach(chip => chip.addEventListener('click', () => {
-    const wasActive = chip === active;
-    clearActive();
-    if(wasActive){ readout.textContent = PROMPT; return; }
-    active = chip;
-    chip.classList.add('is-active');
-    readout.textContent = chip.textContent + ' \u2192 ' + chip.dataset.note;
-  }));
-
-  filter.addEventListener('input', () => {
-    const q = filter.value.trim().toLowerCase();
-    let shown = 0;
-    chips.forEach(chip => {
-      const hit = !q ||
-        chip.textContent.toLowerCase().includes(q) ||
-        chip.dataset.note.toLowerCase().includes(q);
-      chip.classList.toggle('is-hidden', !hit);
-      if(hit) shown++;
-    });
-    rows.forEach(row => row.classList.toggle('is-empty', !row.querySelector('.chip:not(.is-hidden)')));
-    clearActive();
-    readout.textContent = q
-      ? shown + ' of ' + chips.length + ' match \u201c' + q + '\u201d'
-      : PROMPT;
-  });
-
-  filter.addEventListener('keydown', e => {
-    if(e.key === 'Escape'){
-      filter.value = '';
-      filter.dispatchEvent(new Event('input'));
-      filter.blur();
-    }
-  });
-})();
-
-/* ---------- keyboard shortcuts ---------- */
-(function(){
-  const overlay = $('kbd-overlay');
-  const sections = ['experience','projects','skills','contact'];
-  const showHelp = (show) => overlay.classList.toggle('show', show);
-  overlay.addEventListener('click', e => { if(e.target === overlay) showHelp(false); });
-
-  let lastG = 0;
-
-  document.addEventListener('keydown', e => {
-    if(e.metaKey || e.ctrlKey || e.altKey) return;
-    const el = document.activeElement;
-    if(el && (/^(INPUT|TEXTAREA)$/.test(el.tagName) || el.isContentEditable)) return;
-
-    switch(e.key){
-      case '?': showHelp(!overlay.classList.contains('show')); break;
-      case 'Escape': showHelp(false); break;
-      case 't': toggleTheme(); break;
-      case 'i': toggleIPA(); break;
-      case '/': {
-        e.preventDefault();
-        $('skills').scrollIntoView({behavior:'smooth'});
-        $('skill-filter').focus({preventScroll:true});
-        break;
-      }
-      case 'g': {
-        const now = Date.now();
-        if(now - lastG < 450){ window.scrollTo({top:0, behavior:'smooth'}); lastG = 0; }
-        else lastG = now;
-        break;
-      }
-      default: {
-        if(e.key >= '1' && e.key <= '4'){
-          const target = $(sections[+e.key - 1]);
-          if(target) target.scrollIntoView({behavior:'smooth'});
-        }
-      }
-    }
-  });
 })();
 </script>
 </body>
