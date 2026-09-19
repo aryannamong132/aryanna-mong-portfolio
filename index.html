@@ -11,25 +11,24 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   /* ---------- TOKENS ----------
-     Warm monochrome base. Forest green is the single accent and is
-     reserved for identity moments (name, links, active states). */
+     Forest green on cream. */
   :root{
-    --bg:#FBFBFA;
-    --surface:#FFFFFF;
-    --surface-2:#F7F6F3;
-    --ink:#2F3437;
-    --ink-strong:#111111;
-    --muted:#787774;
-    --line:#EAEAEA;
-    --line-strong:rgba(0,0,0,.14);
-    --accent:#1E4230;
-    --accent-soft:#EDF3EC;
-    --accent-text:#346538;
-    --btn:#111111;
-    --btn-hover:#333333;
-    --btn-text:#FFFFFF;
-    --nav-bg:rgba(251,251,250,.82);
-    --ambient:rgba(30,66,48,.05);
+    --bg:#F3F5EF;
+    --surface:#F8F9F5;
+    --surface-2:#EAEFE4;
+    --ink:#17231B;
+    --ink-strong:#1E4230;
+    --muted:#6E8F73;
+    --line:rgba(30,66,48,.14);
+    --line-strong:rgba(30,66,48,.28);
+    --accent:#3E7A54;
+    --accent-soft:#E2EADB;
+    --accent-text:#1E4230;
+    --btn:#1E4230;
+    --btn-hover:#12291E;
+    --btn-text:#F3F5EF;
+    --nav-bg:rgba(243,245,239,.9);
+    --ambient:rgba(62,122,84,.06);
     --radius-sm:4px;
     --radius:6px;
     --radius-lg:12px;
@@ -41,22 +40,22 @@
     --mono:'Geist Mono','SF Mono','JetBrains Mono',monospace;
   }
   [data-theme="dark"]{
-    --bg:#191919;
-    --surface:#202020;
-    --surface-2:#262626;
-    --ink:#D4D4D2;
-    --ink-strong:#F1F1EF;
-    --muted:#9B9A97;
-    --line:#2E2E2E;
-    --line-strong:rgba(255,255,255,.16);
-    --accent:#A9CDB2;
-    --accent-soft:#1F2E24;
-    --accent-text:#A9CDB2;
-    --btn:#F1F1EF;
-    --btn-hover:#D4D4D2;
-    --btn-text:#191919;
-    --nav-bg:rgba(25,25,25,.82);
-    --ambient:rgba(169,205,178,.04);
+    --bg:#0F1E16;
+    --surface:#13241A;
+    --surface-2:#16281E;
+    --ink:#DCE8DE;
+    --ink-strong:#CFE3D3;
+    --muted:#8FAF94;
+    --line:rgba(207,227,211,.12);
+    --line-strong:rgba(207,227,211,.26);
+    --accent:#7FBF93;
+    --accent-soft:#1C3326;
+    --accent-text:#A9D4B5;
+    --btn:#CFE3D3;
+    --btn-hover:#EAF3EC;
+    --btn-text:#0F1E16;
+    --nav-bg:rgba(15,30,22,.9);
+    --ambient:rgba(127,191,147,.05);
   }
 
   /* ---------- BASE ---------- */
@@ -68,7 +67,7 @@
     -webkit-font-smoothing:antialiased;
     transition:background .3s ease,color .3s ease;
   }
-  ::selection{background:var(--accent-soft);color:var(--accent-text)}
+  ::selection{background:var(--ink-strong);color:var(--bg)}
   a{color:inherit;text-decoration:none}
   a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{
     outline:2px solid var(--accent);outline-offset:3px;border-radius:var(--radius-sm);
@@ -251,7 +250,7 @@
     padding:1.6rem;display:flex;flex-direction:column;gap:.8rem;
     transition:box-shadow .2s ease,border-color .2s ease;
   }
-  .card:hover{box-shadow:0 2px 8px rgba(0,0,0,.04);border-color:var(--line-strong)}
+  .card:hover{box-shadow:0 2px 8px rgba(18,41,30,.05);border-color:var(--line-strong)}
   .card-a{grid-column:span 7}
   .card-b{grid-column:span 5}
   .card-c{grid-column:span 12;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:.9rem 2.5rem;align-items:start}
@@ -361,14 +360,14 @@
   /* ---------- SHORTCUTS PANEL ---------- */
   .kbd-overlay{
     position:fixed;inset:0;z-index:200;display:none;
-    place-items:center;background:rgba(17,17,17,.22);
+    place-items:center;background:rgba(18,41,30,.3);
     backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
   }
   .kbd-overlay.show{display:grid}
   .kbd-panel{
     background:var(--surface);border:1px solid var(--line);border-radius:var(--radius-lg);
     padding:1.9rem 2rem;max-width:24rem;width:calc(100% - 2rem);
-    box-shadow:0 12px 40px rgba(0,0,0,.05);
+    box-shadow:0 12px 40px rgba(18,41,30,.08);
   }
   .kbd-panel h3{margin-bottom:1.1rem}
   .kbd-row{display:flex;justify-content:space-between;align-items:center;padding:.4rem 0;font-size:.9rem;border-top:1px solid var(--line)}
@@ -722,14 +721,14 @@ const isDark = () => document.documentElement.dataset.theme === 'dark';
   /* mirrors the CSS tokens; rgba layers can't be read straight off a var */
   const PALETTE = {
     light: [
-      {c:'rgba(120,119,116,.28)', lw:1,   off:1.3},
-      {c:'rgba(30,66,48,.35)',    lw:1.2, off:0.7},
+      {c:'rgba(110,143,115,.35)', lw:1,   off:1.3},
+      {c:'rgba(62,122,84,.55)',   lw:1.2, off:0.7},
       {c:'#1E4230',               lw:1.6, off:0}
     ],
     dark: [
-      {c:'rgba(155,154,151,.28)', lw:1,   off:1.3},
-      {c:'rgba(169,205,178,.4)',  lw:1.2, off:0.7},
-      {c:'#A9CDB2',               lw:1.6, off:0}
+      {c:'rgba(143,175,148,.35)', lw:1,   off:1.3},
+      {c:'rgba(127,191,147,.55)', lw:1.2, off:0.7},
+      {c:'#CFE3D3',               lw:1.6, off:0}
     ]
   };
 
@@ -787,7 +786,7 @@ const isDark = () => document.documentElement.dataset.theme === 'dark';
     energy = 0;
     label.textContent = 'signal';
     ctx.clearRect(0, 0, w, h);
-    trace(2, 0, isDark() ? '#A9CDB2' : '#1E4230', 1.6);
+    trace(2, 0, isDark() ? '#CFE3D3' : '#1E4230', 1.6);
   }
 
   if(reduced){
